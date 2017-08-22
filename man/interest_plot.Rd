@@ -11,7 +11,7 @@ interest_plot(wordlist, termDocumentMatrix, by.var = NULL, byvarname = "")
 
 \item{termDocumentMatrix}{tm TermDocumentMatrix object}
 
-\item{by.var}{can specify variable to group documents by.}
+\item{by.var}{can specify variable to group documents by}
 
 \item{name}{plottable name of by.var}
 }

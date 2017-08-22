@@ -5,7 +5,7 @@
 \title{Creates plots of word frequencies}
 \usage{
 wfplots(termDocumentMatrix, typePlot = 1, wordcount, minfreq = 5,
-  shortendoc = FALSE)
+  shortendoc = FALSE, allCorpus = FALSE)
 }
 \arguments{
 \item{termDocumentMatrix}{tm TermDocumentMatrix object}
@@ -15,6 +15,8 @@ wfplots(termDocumentMatrix, typePlot = 1, wordcount, minfreq = 5,
 \item{minfreq}{minimum number of times a word should occur to be reported}
 
 \item{shortendoc}{Should document names be shortened?}
+
+\item{allCorpus}{For plot type 1, would you like the plot for all documents combined?}
 
 \item{typeplot}{1=word on x, 2=variable on x}
 }

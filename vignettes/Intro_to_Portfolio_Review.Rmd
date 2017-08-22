@@ -1,6 +1,6 @@
 ---
 title: "An Introduction to Computer Assisted Portfolio Review"
-author: "Ryan P Scott"
+author: "Ryan P Scott & Graham Andrews"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
@@ -12,13 +12,13 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-This tookit provides a set of resources for analyzing textual documents using the R programming language for the conduct of portfolio analysis and review. The tools rely on text mining, natural language processing, and machine learning programs developed by other R users and as such heavily relies on code developed by other packages. Thus, it may be thought of as a set of tools combining other packages and thus enabling portfolio review rather than a new package for conduct of text analysis. 
+This tookit provides a set of resources for using the EPAR Text Tools package to analyze textual documents. This leverages the R programming language for the conduct of portfolio analysis and review. The tools rely on text mining, natural language processing, and machine learning programs developed by other R users, and as such heavily relies on code developed by other packages. Thus, it may be thought of as a set of tools combining other packages and thus enabling portfolio review rather than a new package for conduct of text analysis. 
 
-## Introduction
+## Introduction to Portfolio Review and why it's done
 
-  Granting agencies, foundations, and donors often possess large quantities of textual data which they are unable to quickly and efficiently operationalize into meaningful evidence about theories of program change. After a foundation has spent millions of dollars on hundreds of projects, in hundreds of locations, employing thousands of different indicators and outcome measures, based on variously well-articulated theories of change, it is impossible with any reasonable level of confidence to 1. estimate the collective impact of a portfolio of investments within a foundation; 2. estimate the collective impact of investments across foundations; and 3. know that non-consenting individuals have not been made worse off (despite good intent). This is a problem of measurement and accountability for foundations and the public. 
+  Granting agencies, foundations, and donors often possess large quantities of textual data which they are unable to quickly and efficiently coalesce into meaningful evidence about theories of program change. After a foundation has spent millions of dollars on hundreds of projects, in hundreds of locations, employing thousands of different indicators and outcome measures, based on variously well-articulated theories of change, it is impossible with any reasonable level of confidence to 1. estimate the collective impact of a portfolio of investments within a foundation; 2. estimate the collective impact of investments across foundations; and 3. know that non-consenting individuals have not been made worse off (despite good intent). This is a problem of measurement and accountability for foundations and the public. 
   
-Portfolio management is a common method for organizing an investment strategy. Portfolio management allows publics and foundations to identify assets and funding amounts connect spending to theories and outcomes (Sleet, Moffett, and Stevens 2008). Approaches to portfolio management such as the Balanced Scorecard have been useful in directing private and public financial investments in a manner that aligns financial goals with mission goals (Robert S. Kaplan 2001; Hoque 2014/3). These tools aim to connect programs to specific objectives and measures, providing organizations with clear and measureable objectives across multiple value areas. Transparency can help foundations to confront commonly identified missteps of public foundations including mission ambiguity (Eisenberg 1984) and institutional myth (Meyer and Rowan 1977), However, use of such evaluative tools tend to be one-off, tailor made to individual foundations, used to justify spending, or adopted by only the largest research foundations (Hyndman and McConville 2016); (Sleet, Moffett, and Stevens 2008; Schmitz and Schillo 2005; Horton and Mackay 2003). 
+Portfolio management is a common method for analyzing a grant strategy. Portfolio management allows publics and foundations to identify assets and funding amounts connect spending to theories and outcomes (Sleet, Moffett, and Stevens 2008). Approaches to portfolio management such as the Balanced Scorecard have been useful in directing private and public financial investments in a manner that aligns financial goals with mission goals (Robert S. Kaplan 2001; Hoque 2014/3). These tools aim to connect programs to specific objectives and measures, providing organizations with clear and measureable objectives across multiple value areas. Transparency can help foundations to confront commonly identified missteps of public foundations including mission ambiguity (Eisenberg 1984) and institutional myth (Meyer and Rowan 1977), However, use of such evaluative tools tend to be one-off, tailor made to individual foundations, used to justify spending, or adopted by only the largest research foundations (Hyndman and McConville 2016); (Sleet, Moffett, and Stevens 2008; Schmitz and Schillo 2005; Horton and Mackay 2003). 
    
 Portfolio management can either be prospective and retrospective, helping to plan future activities strategies or technologies in light of current assets and risks (Oliveira and Rozenfeld 2010; R. S. Kaplan and Norton 1995). We term the application of portfolio assessment to characterize past actions and assessments with the purpose of influencing prospective management portfolio review. However, portfolio review is limited within foundations. Previously, large organizations possessing diverse funding areas have been challenged by a lack of tools for scaling portfolio reviews across widely differing domains of investment as well as by cognitive and practical limitations of the boundedly rational actors who must run such organizations (Selznick 1996; Simon 1972). Faced with limited time, diverse mission goals, and thousands of objectives, analyzing a portfolio of projects is simply too time consuming, costly, and threatening for program managers who, given limited time frames of employment, must optimize resource allocation not necessarily return on investment. 
   
@@ -28,129 +28,264 @@ However, the field of public administration is increasingly adopting the use of 
    
 We propose and demonstrate the use of data analytic tools including natural language processing and both supervised and unsupervised machine learning to rapidly characterize funding documents identifying theories of change, tying these theories of change to funding levels, and identifying how funding of specific interventions resulted in changes in outcomes of concern to various foundations. The novelty of this new approach is we plan to utilize data analytic tools to automate many of the above processes, providing a manner of reducing the labor and time costs facing a foundation hoping to conduct a portfolio review. Thus, while our methodologies are not novel, nor are portfolio reviews new concepts, we believe that the application of data analytic tools within foundation portfolio review has the potential to dramatically improve the connection between theory and investment for public organizations. Natural language processing and machine learning are common tools for language extraction and coding across a growing range of fields including health, economics, and political science (Carvalho, Freitas, and da Silva 2013; Turian 2013; Wilkerson, Smith, and Stramp 2013; Lee 2000). Specifically, tools allowing for extraction of relations between words are promising for portfolio review because they allow connecting actors, actions, and outcomes identified within programmatic documents to corresponding investments (Turian 2013).
 
-## Portfolio Review Focus
+## Part 1: Creating a research corpus to analyize some sample questions
 
-We begin by addressing the basic question, "how have the research projects conducted by the Evans School Policy Analysis and Research (EPAR) group informed the three aims of the research foci, specifically gender, adoption, and measurement, and what potential synergies exist across these current research topics which may inform the comparative advantage of the EPAR research group?"
+We begin by addressing a sample question:
 
-Within each of the three-research foci, we demonstrate how the tools we are developing can be applied for addressing a key question that may face an organization like ours.
+***How have the research projects conducted by the Evans School Policy Analysis and Research (EPAR) group informed the three aims of the research foci, specifically gender, adoption, and measurement?***
 
-The package can be installed by using the command,
+Second,
+
+***what potential synergies exist across these current research topics which may inform the comparative advantage of the EPAR research group?***
+
+Within each of the three (gender, adoption, and measurement), we demonstrate how the tools we are developing can be applied for addressing a key question that may face an organization like ours. This process can be applied to any question you wish to ask of your own set of documents.
+
+##Installing the package.
+
+<!-- Proposed cut because the installation of a google compute server is a) beyond the ability of average users and b) not within their time budget.  We may want to replace with advice that they consider having these tools set up in a central place if they are going to run them often on multiple machines
+
+#Because many of the tools run here take time and depend on externally installed packages, it might be easier to run the code on an external server rather than working to ensure every package is installed at your workstation. To facilitate your setting up a server, you can find directions for how to set up a Google Cloud Compute insance at [this link]
+#(http://htmlpreview.github.io/?https://raw.githubusercontent.com/ryscott5/eparTextTools/master/vignettes/GoogleDirections.html). -->
+
+The package, epartexttools, along with its dependencies, can be installed by using the following three-step process:
+First, set your working directory.  I often use a new folder I create under "my documents" in windows, but others have had success using a folder in the EPAR shared server.
+
+For me, that command reads like this (replace everything in quotes with the complete path to your own):
 ```{r,eval=FALSE}
-devtools::install_github("ryscott5/epartexttools")
+setwd("C:/Users/Graham/Documents/R/Git_Storage/eparTextTools")
 ```
 
-```{r}
+Then you should start to install epartexttools with the following command:
+```{r,eval=FALSE}
+devtools::install_github("ryscott5/epartexttools", dependencies=TRUE)
+```
+Second, check the output (right at the end) for any error that says a package might have failed to install.  If the package is named PACKAGE_NAME then the error will look like:
+
+```{r,eval=FALSE}
+"Error in library(PACKAGE_NAME) : there is no package called ‘PACKAGE_NAME’" 
+```
+or
+
+```{r,eval=FALSE}
+"Error: dependencies 'PACKAGE_NAME' and 'PACKAGE_NAME' are not available for package 'epartexttools""" 
+```
+I don't know exactly why it doesn't install all of the packages when it successfully covers so many, but it's normal to have a half dozen packages fail to install. What we do next is manually install the one that failed and start again.
+
+Third, install that package manually using the line below with the correct package name added, then restart the process by running step 1.
+```{r,eval=FALSE}
+install.packages("PACKAGE_NAME", dependencies=TRUE)
+```
+
+This can take several rounds of failed packages. So long as the errors are about a different package than before, keep at it! When there are no more errors, the packages have all been installed.
+
+Now we can move on to loading the package into memory to use it. Prior to loading the package, it is very important to first set the java parameters to a larger "swap" size which is done via the following code, thus, prior to calling library, the code below expands the java memory limit to 4 GB, and the second line loads our package.
+
+```{r, eval=FALSE}
 options(java.parameters = "-Xmx4g")
 library(epartexttools)
 ```
 
-##Planned method of study
-## Q1 What research targets gender, adoption, and measurement?
+##Aquiring some documents to study
 
-We begin by reading in a corpus. The EPAR demonstration corpus can be read in and downloaded using the example_documents command which will create a folder titled "demo.docs.folder" in the current working directory. The downloaded documents can then be loaded usingthe allDocs() command. Documents are read into R as a textual corpus--the method used by the TM package. This enables preservation of document metatdata alongside document text. Metadata such as ids and timestamps is stored in the .$meta location of each corpus.
+We begin by reading in a corpus. If you are just testing the tools you can use the example_documents() command to create a folder titled "demo.docs.folder" in the current working directory filled with example text from EPAR's past research.
 
+Otherwise, find the full path ("c:\our_project\our_documents" for example).  Note that you will have to reverse the direction of the slashes in a basic windows folder path from \ to / because R prefers its folder paths to use the forward slash.
 
-```{r, echo=TRUE, results='hide'}
-example_documents()
-corpus1<-allDocs("demo.docs.folder")
-jgc()
+If some of your documents are PDFs without associated text (such as early scanners would output) you can get the text from those files by running the OCR_DOCS() function.  Be careful as this can take about an hour to run on 20 documents of an average 30 page length, and most PDFs do not need this treatment. It's best to separate out the PDFs in which you can highlight the text so that you're running this command on as few documents as possible to save time. If the full path to your documents is (for example) "c:/our_project/our_documents" (remember the forward slashes for R folder styles) then you would run the command:
+
+```{r,eval=FALSE}
+OCR_DOCs("c:/our_project/our_documents")
 ```
-  
-Currently, allDocs supports parsing of txt, pdf,docx, doc, or txt files. However, it is itself a wrapper which reads a directory files using the getTextR function, which itself utilizes modified versions of the read_doc, readPDF, or readPlain functions from the tm package, and the read_docx function from qdapTools. Once documents are read in, the metadata from the documents can be extracted by loooping through elements included within the document, for example;
 
-```{r, echo=TRUE, results='hide',eval=FALSE}
+If you use the OCR_DOCs() function it will a) create new raw text versions of those documents and b) move the text-less PDF files it procesed into a folder which is specially exempted from being added to a corpus to avoid doublecounting.
+
+
+Now that your files are ready, you can create a corpus allDocs() command. Pass to the alldocs() function the full path (or path relative to the R working directory) of the files you want. Documents are read into R as a textual corpus--using the TM package. This enables preservation of document metatdata alongside document text. Metadata such as ids and timestamps is stored in the .$meta location of each corpus.
+
+```{r, echo=TRUE, results='hide', eval=FALSE}
+#optional, load a set of files for testing
+example_documents()
+#if using your own files in another location, replace "demo.docs.folder" with the path to your files.
+corpus1<-allDocs(directory="demo.docs.folder",SkiponError=FALSE)
+```
+
+```{r, eval=FALSE}
+#Make directory for saving and save a copy of the corpus
+epartexttools::makeworking("Research.Grants")
+```
+
+Save your new corpus in the working folder we just made so that it isn't lost.
+
+```{r, eval=FALSE}
+saveRDS(corpus1,file.path(workingfolder, "corpus.rds"))
+```
+
+Load the corpus from save immediately so you can be sure you're working with the same data you have saved.
+
+```{r, echo=T, eval=T, eval=FALSE}
+corpus1<-readRDS(file.path(workingfolder,"corpus.rds"))
+```
+
+Currently, the allDocs() command supports parsing of txt, pdf, docx, doc, or txt files. Behind the scenes, is a "wrapper function" which reads a directory files using the getTextR() function, which itself utilizes modified versions of the read_doc(), readPDF(), or readPlain() functions from the tm package, and the read_docx() function from qdapTools.
+
+Once documents are read into a corpus, the metadata from the documents can be extracted by loooping through elements included within the document, for example;
+
+```{r, echo=TRUE, eval=FALSE}
 lapply(corpus1,function(X){X$meta})[[1]]
 ```
 
-This method of reading in documents treats all documents as unstructured and keeps all elements of text included within a document. It is thus useful for characterizing batches of documents for which there is no common structure. If a common structure does exist for documents, then elements of a document can be extracted using pattern matching (via stringr) or via the tools described in the "Structured Document Analysis" vignette. 
+This method of reading in documents treats all documents as unstructured and keeps all elements of text included within a document. It is thus useful for characterizing batches of documents for which there is no common structure, so we aren't losing information by ignoring the structure of the documents. If a common structure does exist for documents, then elements of a document can be extracted  via the tools described in the "Structured Document Analysis" vignette, or using a pattern matching package in R (like stringr).
+
+At any rate we have our files in a nice single corpus to analyze together at this point. It's time to begin to analyze them.
+
+<!--suggest we cut this: it's not related to the analysis process at hand
+#When beginning a text analysis process, a good starting point is consideration of the is the unit of analysis which we will use for a study. On the one hand, each document may represent a theory of policy change or for a program under study. More than likely however, within a given document or proposal description, more than one theory of change or pathway will be described. Clustering documents in a way that assigns each proposal to a single categegory or cluster would ignore this potential variation. Luckily for the purposes of portfolio review, we are not the first to recognize that bodies of text are not monolithic entities! in fact, a whole series of text analytic progams have been develop that attempt to understand the semantic meanings within text, the connections between areas of text, and how near and far apart bodies of text are associated. -->
+
+As a start, it is useful to step back and reconsider what a "document" entails. While up to this point we have considered each unique PDF, docx, or doc as a "document" for study, taking a liberal approach to the word "document" will enable a more fine-grained approach to text analysis. For example, a document could refer to a sentence or a paragraph. Or inversely, a document could refer to a group of documents which are all part of one proposal. As such, the term document can be somewhat confusing!
+
+If you have multiple different files about the same project, one way to look at them is as a single giant document about that project. Then we can count word frequencies or look for word associations across all the documents at once.
+
+For the purposes of clarity, it is thus easier to think about a set of documents as a set of strings or a set of character vectors. For each string--which might represent an entire proposal or a just a sentence from a proposal depending on the question at hand-- a researcher might decide on a set number of variables, and they could construct a spreadsheet where in one column are a set of strings, and in the other columns are features describing those strings such as funding agency, year, author, grant status, etc. Just as in an introductory statistics class the unit of anlysis is the rows in the spreadsheet while the columns represent variable. Text is just one variable we might consider in an analysis. Moreover, we might aggregate or disagregate text into bigger or larger chunks thus changing the unit of anlysis.
+
+When we break text into smaller chunks it is generally refered to as tokenization. Joining segments of text is concatonization.  When we count word frequencies, we are tokenizing text into words. We then count of often each word occurs in each document.
 
 ###Cleaning and Parsing Text
-Texts are stored in the corpus as character strings facilitating use of different analysis packages. For addressing the first research question-- "What research targets gender, adoption and measurement?" a basic text mining approach that relies on word frequencies, counts, and occurances of words may be optimal. For this, we may want to perform common tasks such as removing whitespace, eliminating stopwords, removing punctuation, and stemming documents. All of these are accomplished rapidly by the doc_clean_process() command which streamlines functionality from the tm package for rapid portfolio review. The second command, TermDocumentMatrix creates a word frequency matrix and removes sparse terms allowing graphical and exploratory analysis of text.
+Within R texts are stored in the corpus as character strings facilitating use of different analysis packages. While we can break those texts into smaller segements or expand them into larger segments, we often want to do so in a systematic way. To begin, we will explore texts with the unit of analysis being individual reports which were downloaded to build the demo dataset. Each report is a study from the EPAR Website.
 
-```{r, echo=TRUE, results='asis'}
+While we could take the texts as-is, there are lots of features in text we generally dont care much about--blank lines, periods, capitalization, white spaces, margins, random-chunks-of-meaningless-text. As a result, we *may* want to perform common tasks such as removing whitespace, eliminating stopwords (boring words), removing punctuation, and stemming (taking words down to their roots). All of these are accomplished rapidly by the doc_clean_process() command which streamlines functionality from the tm package for rapid portfolio review. It tokenizes documents into words and then stems words before joining them back into a a corpus. 
+
+
+```{r, echo=TRUE, results='asis', eval=FALSE}
+#cleans elements of corpus
 corpus2<-doc_clean_process(corpus1)
-gc()
-jgc()
-tdm<-TermDocumentMatrix(corpus2) %>% removeSparseTerms(.,.6)
 ```
 
-To begin exploring documents, we can unilize the d3heatmap package to construct a heatmap of which words are the most common (y axis) across a set of documents (x axis) where the user can select the number of words they are interested in (6 in demo).
-
-```{r,echo=TRUE, results='asis'}
-word_heatmap(tdm,6)
-
-word_heatmap(tdm,pickwords=c("women","gender","access","land","right","work","labor","yield","security"))
+Because we've now made a new corpus, we should save it and load from it as we did the last one:
+  
+```{r, echo=TRUE, results='asis', eval=FALSE}
+saveRDS(corpus2,file.path(workingfolder,"corpus_cleaned.rds"))
 ```
 
-The tdm object can be edited to narrow the graphical information presented, for example if we are only interested words within documents which contain the word women, we can use piping to structure the tdm for the graph. The following code creates a heatmap for documents where gender and women both occur at least once, but then clusters those documents based on the 20 most common words across the entire corpus. 
-
-```{r,echo=TRUE, results='asis'}
-tdm[,as.vector(tdm["gender",])>1] %>% .[,as.vector(.["women",])>1] %>% word_heatmap(.,20)
+```{r,eval=FALSE, echo=FALSE}
+corpus2<-readRDS(file.path(workingfolder,"corpus_cleaned.rds"))
 ```
 
-If static figures are needed, with wfplots(), one can create a basic ggplot() object describing the most frequent terms across documents, or the documents in which the most frequent terms are likely to occur. The objects created by the command can be edited by adding on additional functions, by filtering the term document matrix, or by changing the typePlot. 
+A second function, TermDocumentMatrix(), creates a word frequency matrix, and we're going to also remove sparse terms with removeSparseTermss() allowing graphical and exploratory analysis of text. A Term Document Matrix structures a corpus into a matrix where for every word there is a count of how often that word occurs within a given document. Again, remember, our unit of analysis is going to be a whole set of documents, so  we can use a term document matrix to study how term usage varies across that set. A Term Document Matrix, however, stores, documents in columns and words in each row. Notice, the unit of anlysis could thus be either words (with counts in each report) or reports (which counts of words in each). We will put the term document matrix in a named variable called "tdm" so we can use it again.
 
-```{r}
+```{r, eval=FALSE}
+#converts corpus into term document matrix, removing terms that occur infrequently (can be adjusted by manipulating that .6)
+tdm<-TermDocumentMatrix(corpus2) %>% removeSparseTerms(.,.8)
+```
+
+Now that we have a term document matrix, we can create analyses of the text.  That will be covered in the next document on output options.
+
+<!--
+#Part 2: Outputting graphics for display and analysis
+##An overview of output options
+
+To begin exploring documents, we highlight two commands which provide useful interfaces for seaching documents and clustering documents. When exploring a textual corpora, one often has some sort of an idea of what kinds of information they are interested in. For example, for the above questions we might be interested in what documents discuss terms such as women, gender, access. What if there are other terms closely related or synonyms of those?
+
+##wfplots()
+The first thing you should do with any new set of documents is check the most common terms, using wfplots(). The function needs 4 inputs but the second one is the one that really matters - how many top terms to look for.  For example: wfplots( termDocumentMatrix, 7, shortenDoc = TRUE, typePlot = 2 ). As is common with most of the output functions, the term document matrix is the first thing needed. I suggest leaving the other inputs as they are and just changing the second one, from 5 to 7 or 10 to see which other words you might be interested in.
+
+The objects created by wfplots() can be edited by adding on additional functions, by filtering the term document matrix, or by changing the typePlot. 
+
+```{r, eval=FALSE}
 wfplots(tdm[,c(2,10,12)],typePlot=2, 5,shortendoc=TRUE)
 ```
 
-```{r}
+##assocPrettyOneStep()
+The second important function is assocPrettyOneStep(). This function tells you which other words commonly occur with the word you provide. It's a good idea to run this at least once for each of your terms to make sure you aren't missing any. Here, we generate a table where we show words which occur most commonly with the word gender within the corpus.
+
+```{r, eval=FALSE}
+assocPrettyOneStep("gender",tdm, corpus2,.5)
+```
+
+The function wordcount_table() is a useful one -- it allows us to search for word frequencies in documents, pulling counts of how many times a word occurs in various documents, and weighting that count by the length of the document if we so desire.
+
+```{r,echo=TRUE, results='asis', eval=FALSE}
+#Searches corpus 1 for the words gender and access based and returns counts based on the term document matrix we built above.
+wordcount_table(c("gender","access"),tdm,corpus1)
+```
+
+wordcount_table() generates an html table which can be saved using the saveWidget() command or which can be used just to interact with the data. By default, the function TermDocumentMatrix weights according to weightTF which just counts term frequencies. We might instead want to weight by the term frequency relative to the document frequency, as below. In this command, rather then generating an interactive table, setting raw=true generates a data.table which can then be manipulated within R.
+
+
+```{r,echo=TRUE, results='asis', eval=FALSE}
+tout<-wordcount_table(c("gender","access"),tm::TermDocumentMatrix(corpus2,control=list(weighting=function(X) tm::weightTfIdf(X, normalize=FALSE))),corpus1,raw=T)
+head(tout[,1:3])
+```
+
+##Narrowing the output by modifying the term document matrix
+The tdm object can be edited to narrow the graphical information presented, for example if we are only interested words within documents which contain the word women, we can use piping to structure the tdm for the graph. The following code creates a heatmap for documents where gender and women both occur at least once, but then clusters those documents based on the 20 most common words across the entire corpus. 
+
+```{r,echo=TRUE, results='asis', eval=FALSE}
+tdm[,as.vector(tdm["gender",])>1] %>% .[,as.vector(.["women",])>1] %>% word_heatmap(.,20)
+```
+
+```{r, eval=FALSE}
 tdm[,as.vector(tdm["gender",])>20] %>% .[,as.vector(.["women",])>10] %>% wfplots(.,typePlot=2,10,shortendoc=TRUE)
 ```
 
-```{r}
+```{r, eval=FALSE}
 tdm[,as.vector(tdm["gender",])>20] %>% .[,as.vector(.["women",])>10] %>% wfplots(.,typePlot=1,10,shortendoc=TRUE)+ggtitle("Change X versus Y")
 ```
 
-```{r}
+```{r, eval=FALSE}
 interest_plot_bydoc(c("women","farmer","school"),tdm[,1:5])+coord_flip() 
 ```
 
-```{r}
+```{r, eval=FALSE}
 interest_plot_bydoc(c("women","farmer","school"),tdm[,1:5]) %>% plotly::ggplotly() 
 ```
 
 By editing the term document matrix to include weighting, each of these commands can be used while taking the length of documents into account.
 
-```{r}
+```{r, eval=FALSE}
 TermDocumentMatrix(corpus2[1:10],control=list(weighting=function(x) weightSMART(x))) %>% interest_plot_bydoc(c("women","farmer","school"),.) %>% plotly::ggplotly() 
 ```
 
-These approaches can provide useful exploration, but to get at the key research questions, it can be beneficial to begin to explore how documents are related. If we are interested in identifying research that targets gender, adoption, and measurement respectively, we might first start by exploring words related to gender. 
 
-```{r}
-jgc()
-assocPrettyOneStep("gender",tdm, corpus2,.5)
+While tokenization into words is great, we often want to know how various words go together and how words form sentences that produce meaning and finally (eventually) causal processses.
+
+Within text analysis, document clustering refers to the grouping of documents into a set of categories based on their semantic concepts. From a program evaluation or portfolio review perspective clustering documents is useful because it can allow us to move beyond user-generated queries to allowing a set of textual data provide evidence about underlying theories of change or policy processes.
+
+For initial clustering of text, we can utilize the d3heatmap package to construct a heatmap of which words are the most common (y axis) across a set of documents (x axis) where the user can select the number of words they are interested in (6 in demo).
+
+```{r,echo=TRUE, results='asis', eval=FALSE}
+word_heatmap(tdm,6)
+
+word_heatmap(tdm,pickwords=c("women","gender","access","land","right","work","labor","yield","security"))
 ```
 
 Based on the table, we can observe that the word "equal" is strongly associated with the word gender. We might use this information to cluster our term document matrix and compare documents where "gender" and "equal" occur frequently to other documents.
 
-```{r}
+```{r, eval=FALSE}
 tornadoCompare(tdm,c("gender","equal","femal"),3,10)
 ```
 
-Based on this, we might notice that seasons and school are relatively more frequent for research projects targetting gender as are system related studies and studies of households. While one could forsee creating a comparison for each of the major areas, it also can be useful to utilize a method that allows the topics to be generated by the documents themselves.
+Based on this, we might notice that seasons and school are relatively more frequent for research projects targetting gender as are system related studies and studies of households.
 
-```{r}
-jgc()
-rm(corpus2)
-rm(tdm)
-workingfolder<-file.path("Research.Grants")
-dir.create(file.path(workingfolder))
-saveRDS(corpus1,file.path(workingfolder,"corpus.rds"))
-rm(corpus1)
-corpus1<-readRDS(file.path(workingfolder,"corpus.rds"))
-jgc()
-gc()
-BASE_INPUT<-PreTopicFrame(corpus1,15)
+#Document Clustering
+
+In the above analysis, there was a brief intro into document clustering for the creation of the heatmap of words. However, clustering of documents and words is the basis of much of the automated portfolio review toolset and so we will go into it in more detail throughout the rest of the vignette.
+
+##Structuring documents for topic modeling
+
+While up to this point we have taken documents as given, most text analytic methods were developed for smaller chunks of text. Accordingy, it can be useful to break texts into paragraphs or sentences and then to consider the origin document as a covariate operating on that text chunk. We can thus think of the origin document as a categorical factor that has some unknown relationship to the sentence or text chunk. In the code below, we break a corpus of text--names corpus 1, into paragraph chunks preserving the metadata from each previous chunk. In this code we use the pretopicframe2 function which relies on the Parsey McParseface parser.
+
+```{r,eval=FALSE}
+BASE_INPUT<-PreTopicFrame2(corpus1,workingfolder=workingfolder)
+```
+
+
 BASE_INPUT$out$meta$OpID<-BASE_INPUT$out$meta$Orig
 #saves files so you can reload
-jgc()
 saveRDS(BASE_INPUT,file.path(workingfolder,"base_input1.rds"))
 ```
 
 ###Adding geographic information
-```{r}
+```{r, eval=FALSE}
 buildcliff()
 startcliff()
 library(RCurl)
@@ -162,22 +297,22 @@ BASE_INPUT$out$meta<-reflectCountryCol(BASE_INPUT$out$meta,pred1,10,FALSE)
 getwd()
 saveRDS(BASE_INPUT,file.path(workingfolder,"base_input1.rds"))
 write.csv(pred1,file.path(workingfolder,"countrypredictions1.csv"))
-jgc()
 ```
 
-```{r}
+```{r,eval=FALSE}
 library(plotly)
 runMap(file.path(workingfolder,"countrypredictions1.csv"),path.file=T,"countries")
 ```
 
-```{r}
+```{r,eval=FALSE}
 writeFormulaforSTM(BASE_INPUT,workingfolder)
-jgc()
 ```
 
-```{r}
+```{r,eval=FALSE}
 runSTM(workingfolder)
 ```
+
+
 ## Q2 Where is there alignment between causal pathways identified withins the three research foci?
 
 
@@ -197,3 +332,4 @@ runSTM(workingfolder)
 
 ###Q4: Topic Modelling and Semantic Network Mapping
 
+-->

@@ -4,8 +4,8 @@
 \alias{readPDF2}
 \title{Function call to read pdf files into tm corpus.}
 \usage{
-readPDF2(engine = c("xpdf", "Rpoppler", "ghostscript", "Rcampdf", "custom"),
-  control = list(info = NULL, text = NULL))
+readPDF2(engine = c("xpdf", "Rpoppler", "ghostscript", "Rcampdf", "custom",
+  "pdftools"), control = list(info = NULL, text = NULL))
 }
 \arguments{
 \item{engine}{which pdf library to use. see tm readPDF for more details}

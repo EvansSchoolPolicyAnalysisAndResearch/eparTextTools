@@ -4,13 +4,12 @@
 #' @param docxml The xml table for a word document.
 #' @param string1 String to start capture on.
 #' @param string2 String to end capture on.
-
 #' @return a character vector of length one
 #' @export
 #' @description Read the primary table from a Gates proposal word document, keeping column names. 
 #' @examples
 #' gates3<-bind_rows(lapply(tfiles,outcome_extractor))
-cell_extractor<-function(docxml,string1,string2){paste(docxml[c(which(str_detect(docxml, string1))+1):c(which(str_detect(docxml, string2))-1)],collapse="\n",sep="\n")}
+cell_extractor<-function(docxml,string1,string2){paste(docxml[c(which(stringr::str_detect(docxml, string1))+1):c(which(str_detect(docxml, string2))-1)],collapse="\n",sep="\n")}
 
 
 #' Read in a Gates proposal template.
@@ -89,6 +88,15 @@ docx_table_view<-function(file,export_frame=FALSE,showView=T){
   if(export_frame==TRUE){wordcontent}
 }
 
+
+#' Try to auto-extract form information.
+#'
+#' @param file_list list of word document files
+#' @param multiple allow selecting multiple words
+#' @param graphics graphical or boring interface.
+#' @return 
+#' @export
+#' @description a method for viewing the content of a word
 datapicker<-function(file_list,multiple=TRUE,graphics=FALSE){
 temp<-lapply(file_list,function(X) docx_table_view(X,export_frame=T,showView=F))
 #temp[[1]]$content %in% temp[[2]]$content %in% temp[[3]]$content
@@ -163,8 +171,13 @@ cell_extractor_fixed_raw<-function(file,string1,string2){
   {paste(docxml[c(startint:stopint)],collapse="\n",sep="\n")}
 }
 
+#' Cluster forms based on xml content.
+#'
+#' @param file_list list of word document files
+#' @export
+#' @description a method for viewing the content of a word
 formcluster<-function(file_list){
-alltables<-lapply(file_list, docx_table_view,export_frame=T,showView=F)
+alltables<-lapply(file_list, docx_table_view, export_frame=T,showView=F)
 commatch<-sort(table(do.call(rbind,alltables)$content),decreasing=T) %>% .[nchar(names(.))>5] %>% names(.)
 docmat<-matrix(do.call(c,lapply(alltables,function(AT) sapply(commatch,function(X) X%in%AT$content,USE.NAMES=F)/length(AT))),nrow=length(alltables))
 hc<-hclust(dist(docmat))

@@ -4,12 +4,15 @@
 \alias{getTextR}
 \title{Loads and processes doc,docx,pdf,and txt files into tm corpus.}
 \usage{
-getTextR(fname, tika = FALSE, tikapath = "tika-app-1.13.jar")
+getTextR(fname, tika = FALSE, gen_pdf_tools = T,
+  tikapath = "tika-app-1.13.jar")
 }
 \arguments{
 \item{fname}{Directory name}
 
 \item{tika}{Should tika be used?}
+
+\item{gen_pdf_tools}{if using a pc, set to true. if on linux, setting to false and installing the pdf2text library will be more useful. See readPDF in the tm package for more info.}
 
 \item{tikapath}{Path to the Tika application}
 }

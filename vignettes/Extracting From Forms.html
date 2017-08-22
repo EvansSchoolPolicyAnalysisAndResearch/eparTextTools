@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title></title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<p>Structured docments provide the opportunity to move beyond adopting all text strings for text analysis. Because structured documents such as forms possess entry areas that specify what is supposedly included in the following lines, we can utilize that structure to help define features of the text or characteristics of the documents. </p>
+
+<p>In terms of structured documents, there are multple kinds a user may run across. First of all, a structured PDF may have OCR labelled text that is in a similar location across a wide body of documents. These are among the more complicated documents to code as one has to rely on characters either being recognized the same across a range of responses or the text information must remained stored in a similar manner across the corpus. Word documents can have structured form fields&ndash;this is much less of a problem for extracting data, and we can rely on commmon tools such as Microsoft Access to batch process results. However, this vignette demonstrates how to utilize R to extract necessary information from form fields rapidly by visually assessing the form document and deciding what information is needed for a database.</p>
+
+<p>#Demonstration
+Here, we load agendas from some meetings from the state of Colorado. These tools are mostly built for word files so that&#39;s what we demonstrate here.</p>
+
+<pre><code class="r">tfiles&lt;-list.files(&quot;~/CRO_form_demo&quot;,full.names=T)
+tfiles&lt;-tfiles[str_detect(tolower(tfiles),&quot;docx&quot;)]
+</code></pre>
+
+<p>Word files area really just xml files. To see the contents of a file, you can use the &ldquo;docx_table_view()&rdquo; command.</p>
+
+<pre><code class="r">head(docx_table_view(tfiles[1], export_frame=T,showView=F))
+</code></pre>
+
+<pre><code>##                                                                                                                                                          content
+## 1                                                                                                                       CO Resiliency Framework Services Project
+## 2                                                                                                                                     Week Ending March 14, 2015
+## 3                                                                                                                                                 SUMMARY REPORT
+## 4                                                                                                                                   Task 1: Resiliency Framework
+## 5                                                                                                                                       Activity this past week:
+## 6 Attended all sector committee meetings (except housing) for feedback on drafts and review remaining committee deliverables  - Chang, Jankousky, McClurg w/FEMA
+</code></pre>
+
+<p>We can use that structured information to select common elements. When we are unsure what exactly we need from each document but we know what text comes before and after, we can use the cell_extractor function to then select relevent text. For example, if we want the dates from the files above, we would select &ldquo;CO Resiliency Framework Services Project&rdquo; and &ldquo;SUMMARY REPORT&rdquo; as brackets.</p>
+
+<pre><code class="r">cell_extractor(docx_table_view(tfiles[1],export_frame=T,showView=F)$content,&quot;CO Resiliency&quot;,&quot;SUMMARY&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;Week Ending March 14, 2015&quot;
+</code></pre>
+
+<p>This can then easily be wrapped through documents.</p>
+
+<pre><code class="r">sapply(tfiles, function(X) tryCatch({cell_extractor(docx_table_view(X,export_frame=T,showView=F)$content,&quot;CO Resiliency&quot;,&quot;SUMMARY&quot;)},error=function(e) {NA}))
+</code></pre>
+
+<pre><code>## Warning in startint:stopint: numerical expression has 2 elements: only the
+## first used
+
+## Warning in startint:stopint: numerical expression has 2 elements: only the
+## first used
+
+## Warning in startint:stopint: numerical expression has 2 elements: only the
+## first used
+
+## Warning in startint:stopint: numerical expression has 2 elements: only the
+## first used
+</code></pre>
+
+<pre><code>##  /home/ryscott5/CRO_form_demo/CRO Weekly rpt 3-14-15.docx 
+##                              &quot;Week Ending March 14, 2015&quot; 
+##  /home/ryscott5/CRO_form_demo/CRO Weekly rpt 3-21-15.docx 
+##                              &quot;Week Ending March 28, 2015&quot; 
+##  /home/ryscott5/CRO_form_demo/CRO Weekly rpt 3-28-15.docx 
+##                              &quot;Week Ending March 28, 2015&quot; 
+##   /home/ryscott5/CRO_form_demo/CRO Weekly rpt 3-7-15.docx 
+##                               &quot;Week Ending March 7, 2015&quot; 
+##  /home/ryscott5/CRO_form_demo/CRO Weekly rpt 4-11-15.docx 
+##                                                        NA 
+##  /home/ryscott5/CRO_form_demo/CRO Weekly rpt 4-18-15.docx 
+##                                                        NA 
+##  /home/ryscott5/CRO_form_demo/CRO Weekly rpt 4-25-15.docx 
+##                                                        NA 
+##   /home/ryscott5/CRO_form_demo/CRO Weekly rpt 4-4-15.docx 
+##                                                        NA 
+## /home/ryscott5/CRO_form_demo/CRO Weekly rpt2 2-28-15.docx 
+##                           &quot;Week Ending February 28, 2015&quot; 
+##  /home/ryscott5/CRO_form_demo/CRO weekly rpt 2-14-15.docx 
+##                           &quot;Week Ending February 14, 2015&quot; 
+##  /home/ryscott5/CRO_form_demo/CRO weekly rpt 2-21-15.docx 
+##                           &quot;Week Ending February 21, 2015&quot;
+</code></pre>
+
+<p>Based on the warning, se can see this worked for most of our documents but not all of our documents. One could use the table view command to inspect the files, but we could also use the document cluster command to see how our documents/forms may differ and if that set is meaningfully different. If you had 10000 forms, you obviously couldnt look at them all. </p>
+
+<pre><code class="r">formcluster(tfiles)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-5"/></p>
+
+<p>We might notice that the first four documents are generally somewhat different from the 5th through 11th documents, suggesting we need to do more to think about how to analyze these forms.</p>
+
+<pre><code class="r">docx_table_view(tfiles[8])
+docx_table_view(tfiles[1])
+</code></pre>
+
+</body>
+
+</html>
