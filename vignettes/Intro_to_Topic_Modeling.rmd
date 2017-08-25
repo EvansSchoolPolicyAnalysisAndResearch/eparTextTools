@@ -1,0 +1,116 @@
+---
+title: "Intro_to_Topic_Modeling"
+author: "D. Graham Andrews"
+date: "August 7, 2017"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 7
+    fig_height: 6
+vignette: >
+  %\VignetteIndexEntry{An Introduction to Topic Modeling with the EparTextTools}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This document describes how to go about generating a topic model from  to be analyzed from a set of docouments.
+
+## Getting started
+Youu will need to have a computer with the R programming language installed, a recent version of the Java Vitual Machine installed, an internet connection, and a good amount of memory, 4 gb as a reasonable minimum. This should function on linux (tested with Debian) or Windows (tested with version 10), equally. I strongly suggest covering the Intro to Portfolio Review documentation first, as you will need to cover all of those same functions in the process of this one.
+
+You will also need a set of documents with text in them (pdf, docx, doc, or txt formats) to be analyzed.  If you need a set you can use the epartexttools::example_documents() function to download some to a folder.
+
+## What is topic modeling?
+
+Topic modeling is a process for analyzing document contents using grammar rules. Topic modeling software breaks documents down into their grammar, then uses the different nouns, proper nouns, verb phrases, etc to categorize what things are being talked about in each sentence and what's being done to those things. Using a kind of software readable dictionary of meanings its possible for different nouns to be considered more or less similar to one-another, and the same goes for verbs. In this way the software can cluster groups of sentences about similar things together and calls that a "topic."
+
+# What is a topic in this context?
+
+Savvy readers will be suspicious that any kind software can recognize what a "topics" might be, as they are almost by definition nebulous things. There is no magical solution to this problem. The software can however group similar things and uses a limited desired number of topics (which we give it) to determine where the boundary line between one topic ends and the next begins. "Topics" from the software perspective are therefore groupings of content more similar in content to each other thaan to the text around them.  If more topics are desired, the computer simply narrows the filter, demanding that sentences be more and more similar to each other until it has the desired number of groupings. This matters to you because as the human, your role is to know how many topics are the right number. A common and tricky part of topic analysis is finding a number of topics which seem more or less stable across different numbers of requested topics. This indicates the topic is not an artifact of the function, but rather of actual structure in the text. Unfortunately topic modeling is too complex to cover here, but suffice to say you will need to supply and experiment with the number of requested topics until a good value is found.
+
+## Installing epartexttools (if you haven't already)
+
+This part of the guide will be familiar to anyone who has read or worked with our wordcounting tools before. The first step (if you haven't done it on this computer before) is to install the epartexttools package and all of the many (over 130!) packages it depends on. This is usually pretty quick.
+
+First, try to install epartexttools with the following command:
+```{r,eval=FALSE}
+devtools::install_github("ryscott5/epartexttools", dependencies=TRUE)
+```
+Second, check the output for any error that says a package might have failed to install.  If the package is named PACKAGE_NAME then the error will look like:
+
+```{r,eval=FALSE}
+"Error in library(PACKAGE_NAME) : there is no package called ‘PACKAGE_NAME’" 
+```
+
+Third, install that package manually using the line below with the correct package name added, then restart the process by running step 1.
+```{r,eval=FALSE}
+devtools::install_github("PACKAGE_NAME", dependencies=TRUE)
+```
+
+This can take several rounds of failed packages. So long as the errors are about a different package than before, keep at it! When there are no more errors, the packages have all been installed.
+
+## Creating a corpus out of a set of documents
+
+The next step is to expand the memory available to Java and load the packages we need
+```{r, eval=FALSE}
+#expand the java memory footprint
+options(java.parameters = "-Xmx4g")
+#load the epartexttools module
+library(epartexttools)
+```
+
+If some of your documents are PDFs without associated text (such as early scanners would output) you can get the text from those files by running the OCR_DOCS() function.  Be careful as this can take about an hour to run on 20 documents of an average 30 page length, and most PDFs do not need this treatment. It's best to separate out the PDFs in which you can highlight the text so that you're running this command on as few documents as possible to save time. If the full path to your documents is (for example) "c:/our_project/our_documents" (remember the forward slashes for R folder styles) then you would run the command:
+
+```{r,eval=FALSE}
+#replace the folder path here with your own folder location containing the files to analyze before you run this command.
+OCR_DOCs("c:/our_project/our_documents")
+```
+
+If you use the OCR_DOCs() function it will a) create new raw text versions of those documents and b) move the text-less PDF files it procesed into a folder which is specially exempted from being added to a corpus to avoid doublecounting.
+
+Once that is done, we will have a nice full set of readable text documents ready to be made into a corpus.
+
+We create a corpus by running the allDocs() command, like so:
+```{r,eval=FALSE}
+#Replace "output_corpus" with a variable name for this corpus that makes mose sense to you.
+#Replace the folder listed blow with the correct one to yor files"
+output_corpus <- allDocs("c:/our_project/our_documents")
+```
+
+Next, as a matter of good habits, we save the new corpus we've made and load it again. This allows us to skip re-creating if we want to use it later, and serves as a backup of the original data as well.
+
+```{r,eval=FALSE}
+#Save the corpus
+saveRDS(output_corpus, file.path(getwd(), "corpus_test.rds""))
+#load from the RDS so you're using the data you saved
+corpus_test_2 <- readRDS(pathToFile, "corpus_test.rds" )
+```
+
+The next step is to convert the single corpus into a Frame, which unifys all the documents into a single structure. This function requires the corpus we have made, a number of samples to take from the document where zero processes the whole document, and a storage location for the resulting output (For example you can use your working folder or a subfolder in it.)
+
+```{r,eval=FALSE}
+#The second and third things passed to this function should be change to suit your needs. 
+frame_test <- PreTopicFrame2(corpus_test_2, 0, "c:/our_project/our_documents")
+```
+
+Frames separate out the grammar and tag the nouns and verbs, but we havn't yet made an attempt at generating topics, just mapping grammar so far.  The next step is to generate the formulas which will be used in the topic modeling. Our function generates a file "formula1" which uses default values to determine the "prevalence covariates" used in the STM modeling process. Some more detail can be found on the help page for stm (by typing "??stm::stm"" in the console you can pull up part of the help for the Structural Topic Model package). If you are confident in setting your own prevalence covariates, you should be able to do so by editing the "formula1" file generated at this step.
+
+```{r,eval=FALSE}
+#creates a file called "formula1"", which contains special information about the grammar we've chosen at this point.
+writeFormulaForSTM(frame_test, getwd()) 
+```
+
+With default formulas ready to go, the last thing we need to do is give the computer a good long while to create a plausible set of topics. This will take a long time to run, and its running in a separate instance so it will look finished even when its not actually done. To see if it's done, look for new output files in your working directory (becase the call below enters getwd() instead of supplying a new working directory.)
+
+```{r,eval=FALSE}
+#both arguments to this function can be ce
+topic_model <- runSTM(getwd(), "frame_test")
+```
+
+The last thing to do is look at some results.  Here's the command to do that:
+```{r,eval=FALSE}
+stm::toLDAvis(topic_model,frame_test$out$documents,out.dir = file.path(workingfolder,"c:/our_project/our_documents"))
+```

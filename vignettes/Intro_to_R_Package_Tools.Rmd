@@ -1,0 +1,154 @@
+---
+title: "Intro_to_R_Package_Tools"
+author: "D. Graham Andrews"
+date: "August 18, 2017"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 7
+    fig_height: 6
+vignette: >
+  %\VignetteIndexEntry{An Introduction to the Tools for Managing an R Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This document describes the tool packages we use to build and maintain our R package. In particular we cover Git, knitr, and Roxygen2, which are used for source management, vignette (long form documentation) and manual files (source code documentation), respectively. If you've worked with packages in R before, you probably know some or all of these already. If you've worked with package systems in other programming languages, these will be familiar. If you're new to software packages entirely, this should be enough to let you make the edits you need to make.
+
+# Git
+
+Git is a relatively common tool for source management in software. Software files are essentially text files, and source management systems are designed to allow many programmers to work on different parts of the same files, maintain different versions of the same files. Think about how you might collaborate simultaneously on a document through google docs, with several students editing different sections at once. Github does something similar, but more complex. Because many hardcore programmers don't use graphical interfaces or even use Microsoft Windows, git is at it's root a tool managed by putting commands into the console. RStudio has hidden some of it by adding buttons for the main commands of git, but if you get into a complex situation, there are some things you can still only do via the console.  On my version of RStudio, you can access the git console under a dropdown called **More** in the *git* tab.
+
+## Git 1 of 8 - Remote Repository
+
+Again, think of google docs, by storing your file with google, several students can work on it at once because the authoritative final version is always on google's servers.  Git also uses a central server to do the same thing, but because software is slightly different from English text, realtime co-editing is not very useful.
+
+For instance, you may want to work on a particular function for a couple of days, and while it's in progress, the program (the document) won't run. In an English document having an unfinished section is no problem, but in a software program it means everyone else cannot test their work because the program doesn't run. To answer this problem, git establishes the local repository.
+
+When you have marked complete changes and want to send them to the remote repository, you use the "push" command. RStudio has buttons to do this.
+When you want to get the latest copy of the project in the remote repository, you use the "pull" command. RStudio has buttons to do this.
+More on these later.
+
+## Git 2 of 8 - Local Repository
+
+Well, a remote repository is nice, but how can you work on your project when you're offline, on a plane, or the internet is down? What if your changes would cause the program to fail to run while you're in progress working on them? A local repository is simply your own personal copy of the remote repository, for you to work with, while not stepping on the toes of the other programmers. It contains the entire program so you can test it to make sure your changes don't break anything before sending them to the remote repository.
+
+To move a file you've made changes to into the local repository, you need to **commit** it.  RStudio has buttons to do this.
+
+## Git 3 of 8 - Staging
+
+Well, you may be editing several parts of the code at once. You may have a 50% finished piece laying around for feature A, but have completed feature B. Normally this would mean you can't test your feature B because feature A isn't finished and will crash the program. There must be a way to work on multiple parts of the code at once without breaking your local repository! This is what staging is for.(if you're using the UI built into RStudio, as I do, then staging is a checkbox next to your changed files in the top right "git" panel.) Staging a file says you think it's done and ready to be put into your local repository, to be tested with the rest of the project, and thence to the remote repository.
+
+When you have files with changes in them, you mark them as **staged**, then click **commit** to put them in your local repository.
+
+## Git 4 of 8 - Workspace
+
+You may wonder what happens to files you've changed and saved but not staged. These stay right where they are on your machine in the designated git folders. Those folders are called the workspace.  In this way you can work on them for several days and keep them saved, before staging, committing, and pushing them.
+
+## Git 5 of 8 - github
+
+Github is a website that hosts git repositories, often for free. This means we don't have to have or maintain our own git server.
+
+## Git 6 of 8 - Branches
+
+EparTextTools doesn't use branches, but they are for managing multiple copies of a similar project.  Imagine your resume. It's mostly the same for each employer it goes to, but often you customize it for specific jobs or employers. If you had a staff of people working on your resume (wouldn't that be nice!?) they might consider each variation on your resume a **branch**. Branches allow you to maintain different copies of your program for different purposes, and the manager of the project (and the programmers working on it) can determine which branches their updates go to, so you don't have to fix typos in 10 different places if its the same code in all of them.
+
+## Git 7 of 8 - Git cheat sheet - First time setup
+
+Setting up a new computer for the first time, you'll go to tools -> project options in RStudio, put in your git credentials and the location of the **remote repository** for our project on github. At the time of writing, it's in Ryan's personal github repositor at https://github.com/ryscott5/eparTextTools but this is slated to change.
+
+You'll also need to establish a folder on your hard drive to contain your **local repository** copy of the entire **remote repository**.
+
+Then you need to pull the package down to fill your local repository, and you're ready to start making changes.
+
+For more information on using git (or another version control tool) with Rstudio, their help files are here:
+https://www.rstudio.org/links/using_version_control?version=1.0.143&mode=desktop
+
+## Git 8 of 8 - Git Cheat Sheet - Checking in changes
+
+Say you've edited one of the code files in the project, like textFunctions.r, and you'd like to save those changes to github. First you should click PULL to download the latest version of the **remote repository** so that you have any changes people have checked in since the last time you pulled. Now you want to move your change to the local repository.  Start by clicking the **stage** checkbox for your the edited file. Then you'll want to **commit** the staged files to your local repository. If there are any conflicts with what someone else has changed in that file, resolving them is complicated and will require you to look at both sets of changes to determine which ones are the right ones. This process is called *merging* and it's too complex to deal with here. Your best bet is to start reading on handling merge conflicts in git (there are many merge tools to help do it) and to look at the difference between the files. At the worst you may have to discuss with the other programmer whose changes should stick, and whose should go back to the drawing board. At best, you may be able to just force your change to overwrite the other side because you can see the difference has no effect.
+
+In general, you want to avoid merge issues at all costs by ensuring you and another programmer never work on the same function at the same time. Merging is something software engineers do commonly, but it's complex enough to avoid if you're not a software engineer.
+
+# knitr
+
+Moving on to another tool, Knitr is an R package which lets us make vignettes like the one you're reading right now. Vignettes are actually quite powerful and we don't use most of their potential in our documents. They are *dynamic documents.* For example, sample code written in a vignette can be run in R automatically as you read through it, so that the vignette acts as a guided tour of the program, rather than a static document. It does this by automatically generating and HTML document (the same as a web page) and the .r code file and the links between them to show the R output on the HTML page. Whdn you're writing a new vignette, you do it in a **Markdown language** called rmarkdown. Markdown languages are like the halfway point between code and a word document. HTML is the most commonly known markdown language, and knitr is a tool which takes rmarkdown files (***.rmd) and automatically generates HTML files and .r files. So if you're writing or editing a vignette, make your changes in the .rmd file.  The other two are only to be touched by software.
+
+## Knitr 1 of 2: Code in vignettes
+For the most part, when creating vignettes, I don't want my code to run, so when I write code to for the vignette like symmary(cars), I write:
+
+'''{r pressure, echo=FALSE, eval=FALSE}
+plot(pressure)
+'''
+
+and in the output it shows as:
+
+```{r pressure, eval=FALSE}
+??plot(pressure)
+```
+
+This is markdown code which tells us it's about to start running some r code and it will input the object *pressure* to the function. Another example of using markdown code to create documents is using the hash or number symbol \# to make header text, much larger than normal text. This is different from word documents where what you see is what you get. 
+
+The echo=false and eval=false prevent the vignette from evaluating (running) the code or displaying the output if it did. This makes our help files more like boring documents than I think the creators of vignettes intended, but thats what we do.
+
+You can read more about the rmarkdown markup language here:
+```{r, eval=FALSE}
+??knitr::knitr-markdown
+```
+
+and you can read more about knitr here:
+http://yihui.name/knitr/
+
+## knitr 2 of 2: Exporting your final document
+
+When you have a finished rmarkdown file (.rmd), you need to transform it into a working vignette by either clicking the handy "Knit" button in Rstudio along the file toolbar (it has a ball of yarn icon), or by calling the knitr::knit2html() function. You can get details on calling that function if you need it from:
+
+```{r, eval=FALSE}
+??knitr::knit2html
+```
+
+# roxygen2
+
+Much like knitr makes vignettes, roxygen2 makes help files for understanding software functions. Manual pages are a critical part of software, describing what a function does, what inputs it expects, what outputs it returns, and what it does. These used to be written by hand but in modern languages there is a way to generate them from a minimum of writing. You can find all the manual files in the /man/ directory of our package, but none of them need to be touched by a human.
+
+## Roxygen 1 of 3 - Manual files
+Every time you write ?? to see what a function does, like:
+```{r, eval=FALSE}
+??allDocs()
+```
+The output you see is a generated manual page made by roxygen2.  When you add a new function to the package, you'll need to supply the right code at the top of your function for roxygen to understand it.  Here's what that looks like for the top of the alldocs() function. This is what Ryan wrote into the source code so that roxygen could document that function.
+
+## Roxygen 2 of 3 - Roxygen markup language
+
+Similar to how knitr above has a special language of symbols to determine what becomes a header and what becomes italics or code, roxygen has a simple markup language it looks for at the top of every function in our source code. Here is a sample of what the roxygen documentation code at the head of the getTextR function looks like:
+
+```{r, echo=FALSE, eval=FALSE}
+#' Calls getTextR on all files in a directory joining into corpus. 
+#'
+#' @param directory Folder to read files from'
+#' @param onError if skip, skip documents that read wrong.
+#' @param gen_pdf_tools if using a pc set to true. if on a unix server, setting to false will preserve pdf metadata.
+#' @return Corpus of text documents.
+#' @seealso \code{\link{corpus}} 
+#' @export
+#' @description  This function will read from a folder documents of the class pdf, docx, doc or txt.
+#' @examples
+#' allDocs("folder")
+```
+
+The lines with an @tag are the important ones for roxygen.  @param lists one of the "parameters" which must be given (passed) to the function. @return specifies the return value, @seealso lets you link to other functions related to that one, @description is a publicly visible description of the function, which is essential for searching help files, and finally @examples shows sample code for how the function might be called in hypothetical scenarios.
+
+
+## Roxygen 3 of 3 - Generating roxygen manual files for the package.
+
+Probably the hardest part with roxygen is getting it to run in the first place. If it gets started it's likely to finish. The issue is that roxygen expects to run on a whole package at once. It depends on the DESCRIPTION file for our package to describe what's in the package and who owns it.
+
+If the package files are not all in order, roxygen will not run. Reading the roxygen guide on defining a package successfully is worth spending your time on. To run roxygen on your package, use the following command:
+
+```{r, echo=FALSE, eval=FALSE}
+roxygen2::roxygenise("package_directory")
+```
+
