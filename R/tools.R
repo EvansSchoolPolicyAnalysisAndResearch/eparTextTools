@@ -9,6 +9,7 @@
 #' @export
 #' @examples
 #' outputFileLocation <- findHiddenHTML("C:/Users/Graham/Documents/EPAR/HTML_TXT_TestFiles")
+
 findHiddenHTML<-function(path, moveOldFiles=TRUE){
 
 #library 
@@ -28,15 +29,19 @@ storeOriginalsPath <- toString(paste(getwd(),"/HTML_Sources/", sep=""))
 setwd(path) #put the working directory back after creating the sources path.
 
 dir.create(storeOriginalsPath)
-
+outputCounter <- 1
 for(eachFilePath in listOfFiles){
   fileName<-eachFilePath
   if(.Platform$OS.type == "windows"){
     fileName<-strsplit(eachFilePath, "/") #if we have a full path, cut it into chunks based on the /
     fileName<-fileName[length(fileName)] #set the filename to the last chunk of the path
+    fileName <- paste0(fileName,collapse="_")
   }
   else{print("Warning: OS is not windows, so remember that the findHiddenHTML function must be called with filenames and not paths on other OS's.")}
-
+  
+  print(paste("Beginning with file ", toString(outputCounter), " out of ", length(listOfFiles), ", named ", fileName, sep=""))
+  outputCounter <- outputCounter + 1
+  
   fileName <- sapply(fileName,tolower)
   outputFileName <- gsub(".txt", "", fileName)  
   #prep a file connection to output the raw text
@@ -66,9 +71,9 @@ for(eachFilePath in listOfFiles){
   
   if(moveOldFiles){
   #and move the source file out of the main directory to avoid showing two similar files to the next bit of code
-    file.copy(eachFilePath, paste(storeOriginalsPath, fileName, sep = ""), copy.date = TRUE, copy.mode = TRUE)
-    file.remove(eachFilePath)
+      file.copy(eachFilePath, paste(storeOriginalsPath, fileName, sep = ""), copy.date = TRUE, copy.mode = TRUE)      
   }
+  file.remove(eachFilePath)
 }
 
 #return the working directory
@@ -78,3 +83,4 @@ return(outputPath)
 
 }
 
+findHiddenHTML("C:/Users/Graham/Documents/EPAR/HTML_TXT_TestFiles", moveOldFiles = FALSE)
