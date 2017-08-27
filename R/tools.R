@@ -83,4 +83,3 @@ return(outputPath)
 
 }
 
-findHiddenHTML("C:/Users/Graham/Documents/EPAR/HTML_TXT_TestFiles", moveOldFiles = FALSE)
