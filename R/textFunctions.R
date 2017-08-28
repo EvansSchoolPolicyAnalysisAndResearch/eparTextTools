@@ -419,7 +419,7 @@ interest_plot_bydoc<-function(wordlist,termDocumentMatrix){
 tornadoCompare<-function(termmatrix,pickword,frequency,nwords) {
   words_gender<-as.matrix(termmatrix[,as.vector(termmatrix[pickword,])>frequency]) %>% rowSums()
   words_gender<-words_gender/sum(words_gender)
-  words_notgender<-as.matrix(tdm[,as.vector(termmatrix[pickword,])<=frequency]) %>% rowSums()
+  words_notgender<-as.matrix(termmatrix[,as.vector(termmatrix[pickword,])<=frequency]) %>% rowSums()
   words_notgender<-words_notgender/sum(words_notgender)
   bothgen<-cbind2(words_gender,words_notgender)
   bothgen<-as.TermDocumentMatrix(bothgen,weighting=weightTf) 
