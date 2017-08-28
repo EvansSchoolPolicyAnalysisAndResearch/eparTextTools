@@ -31,6 +31,9 @@ Topic modeling is a process for analyzing document contents using grammar rules.
 
 Savvy readers will be suspicious that any kind software can recognize what a "topics" might be, as they are almost by definition nebulous things. There is no magical solution to this problem. The software can however group similar things and uses a limited desired number of topics (which we give it) to determine where the boundary line between one topic ends and the next begins. "Topics" from the software perspective are therefore groupings of content more similar in content to each other thaan to the text around them.  If more topics are desired, the computer simply narrows the filter, demanding that sentences be more and more similar to each other until it has the desired number of groupings. This matters to you because as the human, your role is to know how many topics are the right number. A common and tricky part of topic analysis is finding a number of topics which seem more or less stable across different numbers of requested topics. This indicates the topic is not an artifact of the function, but rather of actual structure in the text. Unfortunately topic modeling is too complex to cover here, but suffice to say you will need to supply and experiment with the number of requested topics until a good value is found.
 
+## Installing python
+Unlike other parts of the EPAR text tools, logic modeling requires Python.  You should head to https://www.python.org/downloads/ and download the latest version of pythonn 3.
+
 ## Installing epartexttools (if you haven't already)
 
 This part of the guide will be familiar to anyone who has read or worked with our wordcounting tools before. The first step (if you haven't done it on this computer before) is to install the epartexttools package and all of the many (over 130!) packages it depends on. This is usually pretty quick.

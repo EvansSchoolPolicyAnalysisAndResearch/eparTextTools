@@ -12,6 +12,8 @@ LazyData: true
 Imports:
   plyr,
   dplyr,
+  dbplyr,
+  spacyr,
   stringr,
   ggplot2,
   methods,
