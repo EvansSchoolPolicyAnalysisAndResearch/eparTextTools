@@ -451,24 +451,8 @@ interest_plot_bydoc_char<-function(wordlist,termDocumentMatrix,doccharacteristic
     ggplot(tempframe, aes(variable, value, fill=word)) + geom_bar(position = "stack", stat="identity") + theme(axis.text.x=element_text(color="#000000",angle=50, hjust=1, size=12),panel.background=element_blank())+xlab("")+ylab("Frequency")+ggthemes::scale_fill_pander()
   } else {
     ggplot(tempframe, aes(variable, value)) + geom_bar(fill="#8ebfad", position = "stack", stat="identity") + theme(axis.text.x=element_text(color="#000000",angle=50, hjust=1, size=12), panel.background=element_blank())+xlab("")+ylab("Frequency")+ggthemes::scale_fill_pander()
-  }}
-
-
-#' Suggests keywords based on the conceptnet API
-#'
-#' @param keyword word to search conceptnet for
-#' @param path_root if true, can put in word path returned from previous calls otherwise defaults to keyword.
-#' @export
-#' @example suggestkeywords("polio") %>% suggestkeywords(.$word[3],path_root=T)
-suggestkeywords<-function(keyword,path_root=F){
-  cnetpath<-if(path_root==T){"http://api.conceptnet.io"} else {"http://api.conceptnet.io/c/en"}
-  temp<-jsonlite::fromJSON(file.path(cnetpath,keyword))
-  temp<-lapply(temp$edges$start$term, function(keyword1) {
-    temp2<-jsonlite::fromJSON(file.path("http://api.conceptnet.io",keyword1))
-    data.frame("label"=temp2$edges$start$label,"term"=temp2$edges$start$term)})
-  list("word"=c(c(sapply(temp, function(X) as.character(X$term)) %>% unlist(.) %>% unique()) %>% unique),"term"=c(c(sapply(temp, function(X) as.character(X$label)) %>% unlist(.) %>% unique())%>% unique))
+  }
 }
-
 
 
 
