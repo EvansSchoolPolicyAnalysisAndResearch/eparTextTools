@@ -1,18 +1,15 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-
-<meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="pandoc" />
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="pandoc">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="author" content="D. Graham Andrews" />
+<meta name="author" content="D. Graham Andrews">
 
-<meta name="date" content="2017-08-18" />
+<meta name="date" content="2017-08-18">
 
 <title>Intro_to_R_Package_Tools</title>
 
@@ -59,11 +56,106 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 
-<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css">
 
-</head>
+<script type="text/javascript" src="Intro_to_R_Package_Tools_files/MathJax.js"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
 
-<body>
+<body><div id="MathJax_Message" style="display: none;"></div>
 
 
 
@@ -74,90 +166,249 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 
-<p>This document describes the tool packages we use to build and maintain our R package. In particular we cover Git, knitr, and Roxygen2, which are used for source management, vignette (long form documentation) and manual files (source code documentation), respectively. If you’ve worked with packages in R before, you probably know some or all of these already. If you’ve worked with package systems in other programming languages, these will be familiar. If you’re new to software packages entirely, this should be enough to let you make the edits you need to make.</p>
+<p>This document describes the tool packages we use to build and 
+maintain our R package. In particular we cover Git, knitr, and Roxygen2,
+ which are used for source management, vignette (long form 
+documentation) and manual files (source code documentation), 
+respectively. If you’ve worked with packages in R before, you probably 
+know some or all of these already. If you’ve worked with package systems
+ in other programming languages, these will be familiar. If you’re new 
+to software packages entirely, this should be enough to let you make the
+ edits you need to make.</p>
 <div id="git" class="section level1">
 <h1>Git</h1>
-<p>Git is a relatively common tool for source management in software. Software files are essentially text files, and source management systems are designed to allow many programmers to work on different parts of the same files, maintain different versions of the same files. Think about how you might collaborate simultaneously on a document through google docs, with several students editing different sections at once. Github does something similar, but more complex. Because many hardcore programmers don’t use graphical interfaces or even use Microsoft Windows, git is at it’s root a tool managed by putting commands into the console. RStudio has hidden some of it by adding buttons for the main commands of git, but if you get into a complex situation, there are some things you can still only do via the console. On my version of RStudio, you can access the git console under a dropdown called <strong>More</strong> in the <em>git</em> tab.</p>
+<p>Git is a relatively common tool for source management in software. 
+Software files are essentially text files, and source management systems
+ are designed to allow many programmers to work on different parts of 
+the same files, maintain different versions of the same files. Think 
+about how you might collaborate simultaneously on a document through 
+google docs, with several students editing different sections at once. 
+Github does something similar, but more complex. Because many hardcore 
+programmers don’t use graphical interfaces or even use Microsoft 
+Windows, git is at it’s root a tool managed by putting commands into the
+ console. RStudio has hidden some of it by adding buttons for the main 
+commands of git, but if you get into a complex situation, there are some
+ things you can still only do via the console. On my version of RStudio,
+ you can access the git console under a dropdown called <strong>More</strong> in the <em>git</em> tab.</p>
 <div id="git-1-of-8---remote-repository" class="section level2">
 <h2>Git 1 of 8 - Remote Repository</h2>
-<p>Again, think of google docs, by storing your file with google, several students can work on it at once because the authoritative final version is always on google’s servers. Git also uses a central server to do the same thing, but because software is slightly different from English text, realtime co-editing is not very useful.</p>
-<p>For instance, you may want to work on a particular function for a couple of days, and while it’s in progress, the program (the document) won’t run. In an English document having an unfinished section is no problem, but in a software program it means everyone else cannot test their work because the program doesn’t run. To answer this problem, git establishes the local repository.</p>
-<p>When you have marked complete changes and want to send them to the remote repository, you use the “push” command. RStudio has buttons to do this. When you want to get the latest copy of the project in the remote repository, you use the “pull” command. RStudio has buttons to do this. More on these later.</p>
+<p>Again, think of google docs, by storing your file with google, 
+several students can work on it at once because the authoritative final 
+version is always on google’s servers. Git also uses a central server to
+ do the same thing, but because software is slightly different from 
+English text, realtime co-editing is not very useful.</p>
+<p>For instance, you may want to work on a particular function for a 
+couple of days, and while it’s in progress, the program (the document) 
+won’t run. In an English document having an unfinished section is no 
+problem, but in a software program it means everyone else cannot test 
+their work because the program doesn’t run. To answer this problem, git 
+establishes the local repository.</p>
+<p>When you have marked complete changes and want to send them to the 
+remote repository, you use the “push” command. RStudio has buttons to do
+ this. When you want to get the latest copy of the project in the remote
+ repository, you use the “pull” command. RStudio has buttons to do this.
+ More on these later.</p>
 </div>
 <div id="git-2-of-8---local-repository" class="section level2">
 <h2>Git 2 of 8 - Local Repository</h2>
-<p>Well, a remote repository is nice, but how can you work on your project when you’re offline, on a plane, or the internet is down? What if your changes would cause the program to fail to run while you’re in progress working on them? A local repository is simply your own personal copy of the remote repository, for you to work with, while not stepping on the toes of the other programmers. It contains the entire program so you can test it to make sure your changes don’t break anything before sending them to the remote repository.</p>
+<p>Well, a remote repository is nice, but how can you work on your 
+project when you’re offline, on a plane, or the internet is down? What 
+if your changes would cause the program to fail to run while you’re in 
+progress working on them? A local repository is simply your own personal
+ copy of the remote repository, for you to work with, while not stepping
+ on the toes of the other programmers. It contains the entire program so
+ you can test it to make sure your changes don’t break anything before 
+sending them to the remote repository.</p>
 <p>To move a file you’ve made changes to into the local repository, you need to <strong>commit</strong> it. RStudio has buttons to do this.</p>
 </div>
 <div id="git-3-of-8---staging" class="section level2">
 <h2>Git 3 of 8 - Staging</h2>
-<p>Well, you may be editing several parts of the code at once. You may have a 50% finished piece laying around for feature A, but have completed feature B. Normally this would mean you can’t test your feature B because feature A isn’t finished and will crash the program. There must be a way to work on multiple parts of the code at once without breaking your local repository! This is what staging is for.(if you’re using the UI built into RStudio, as I do, then staging is a checkbox next to your changed files in the top right “git” panel.) Staging a file says you think it’s done and ready to be put into your local repository, to be tested with the rest of the project, and thence to the remote repository.</p>
+<p>Well, you may be editing several parts of the code at once. You may 
+have a 50% finished piece laying around for feature A, but have 
+completed feature B. Normally this would mean you can’t test your 
+feature B because feature A isn’t finished and will crash the program. 
+There must be a way to work on multiple parts of the code at once 
+without breaking your local repository! This is what staging is for.(if 
+you’re using the UI built into RStudio, as I do, then staging is a 
+checkbox next to your changed files in the top right “git” panel.) 
+Staging a file says you think it’s done and ready to be put into your 
+local repository, to be tested with the rest of the project, and thence 
+to the remote repository.</p>
 <p>When you have files with changes in them, you mark them as <strong>staged</strong>, then click <strong>commit</strong> to put them in your local repository.</p>
 </div>
 <div id="git-4-of-8---workspace" class="section level2">
 <h2>Git 4 of 8 - Workspace</h2>
-<p>You may wonder what happens to files you’ve changed and saved but not staged. These stay right where they are on your machine in the designated git folders. Those folders are called the workspace. In this way you can work on them for several days and keep them saved, before staging, committing, and pushing them.</p>
+<p>You may wonder what happens to files you’ve changed and saved but not
+ staged. These stay right where they are on your machine in the 
+designated git folders. Those folders are called the workspace. In this 
+way you can work on them for several days and keep them saved, before 
+staging, committing, and pushing them.</p>
 </div>
 <div id="git-5-of-8---github" class="section level2">
 <h2>Git 5 of 8 - github</h2>
-<p>Github is a website that hosts git repositories, often for free. This means we don’t have to have or maintain our own git server.</p>
+<p>Github is a website that hosts git repositories, often for free. This
+ means we don’t have to have or maintain our own git server.</p>
 </div>
 <div id="git-6-of-8---branches" class="section level2">
 <h2>Git 6 of 8 - Branches</h2>
-<p>EparTextTools doesn’t use branches, but they are for managing multiple copies of a similar project. Imagine your resume. It’s mostly the same for each employer it goes to, but often you customize it for specific jobs or employers. If you had a staff of people working on your resume (wouldn’t that be nice!?) they might consider each variation on your resume a <strong>branch</strong>. Branches allow you to maintain different copies of your program for different purposes, and the manager of the project (and the programmers working on it) can determine which branches their updates go to, so you don’t have to fix typos in 10 different places if its the same code in all of them.</p>
+<p>EparTextTools doesn’t use branches, but they are for managing 
+multiple copies of a similar project. Imagine your resume. It’s mostly 
+the same for each employer it goes to, but often you customize it for 
+specific jobs or employers. If you had a staff of people working on your
+ resume (wouldn’t that be nice!?) they might consider each variation on 
+your resume a <strong>branch</strong>. Branches allow you to maintain 
+different copies of your program for different purposes, and the manager
+ of the project (and the programmers working on it) can determine which 
+branches their updates go to, so you don’t have to fix typos in 10 
+different places if its the same code in all of them.</p>
 </div>
 <div id="git-7-of-8---git-cheat-sheet---first-time-setup" class="section level2">
 <h2>Git 7 of 8 - Git cheat sheet - First time setup</h2>
-<p>Setting up a new computer for the first time, you’ll go to tools -&gt; project options in RStudio, put in your git credentials and the location of the <strong>remote repository</strong> for our project on github. At the time of writing, it’s in Ryan’s personal github repositor at <a href="https://github.com/ryscott5/eparTextTools" class="uri">https://github.com/ryscott5/eparTextTools</a> but this is slated to change.</p>
+<p>Setting up a new computer for the first time, you’ll go to tools 
+-&gt; project options in RStudio, put in your git credentials and the 
+location of the <strong>remote repository</strong> for our project on github. At the time of writing, it’s in Ryan’s personal github repositor at <a href="https://github.com/ryscott5/eparTextTools" class="uri">https://github.com/ryscott5/eparTextTools</a> but this is slated to change.</p>
 <p>You’ll also need to establish a folder on your hard drive to contain your <strong>local repository</strong> copy of the entire <strong>remote repository</strong>.</p>
 <p>Then you need to pull the package down to fill your local repository, and you’re ready to start making changes.</p>
 <p>For more information on using git (or another version control tool) with Rstudio, their help files are here: <a href="https://www.rstudio.org/links/using_version_control?version=1.0.143&amp;mode=desktop" class="uri">https://www.rstudio.org/links/using_version_control?version=1.0.143&amp;mode=desktop</a></p>
 </div>
 <div id="git-8-of-8---git-cheat-sheet---checking-in-changes" class="section level2">
 <h2>Git 8 of 8 - Git Cheat Sheet - Checking in changes</h2>
-<p>Say you’ve edited one of the code files in the project, like textFunctions.r, and you’d like to save those changes to github. First you should click PULL to download the latest version of the <strong>remote repository</strong> so that you have any changes people have checked in since the last time you pulled. Now you want to move your change to the local repository. Start by clicking the <strong>stage</strong> checkbox for your the edited file. Then you’ll want to <strong>commit</strong> the staged files to your local repository. If there are any conflicts with what someone else has changed in that file, resolving them is complicated and will require you to look at both sets of changes to determine which ones are the right ones. This process is called <em>merging</em> and it’s too complex to deal with here. Your best bet is to start reading on handling merge conflicts in git (there are many merge tools to help do it) and to look at the difference between the files. At the worst you may have to discuss with the other programmer whose changes should stick, and whose should go back to the drawing board. At best, you may be able to just force your change to overwrite the other side because you can see the difference has no effect.</p>
-<p>In general, you want to avoid merge issues at all costs by ensuring you and another programmer never work on the same function at the same time. Merging is something software engineers do commonly, but it’s complex enough to avoid if you’re not a software engineer.</p>
+<p>Say you’ve edited one of the code files in the project, like 
+textFunctions.r, and you’d like to save those changes to github. First 
+you should click PULL to download the latest version of the <strong>remote repository</strong>
+ so that you have any changes people have checked in since the last time
+ you pulled. Now you want to move your change to the local repository. 
+Start by clicking the <strong>stage</strong> checkbox for your the edited file. Then you’ll want to <strong>commit</strong>
+ the staged files to your local repository. If there are any conflicts 
+with what someone else has changed in that file, resolving them is 
+complicated and will require you to look at both sets of changes to 
+determine which ones are the right ones. This process is called <em>merging</em>
+ and it’s too complex to deal with here. Your best bet is to start 
+reading on handling merge conflicts in git (there are many merge tools 
+to help do it) and to look at the difference between the files. At the 
+worst you may have to discuss with the other programmer whose changes 
+should stick, and whose should go back to the drawing board. At best, 
+you may be able to just force your change to overwrite the other side 
+because you can see the difference has no effect.</p>
+<p>In general, you want to avoid merge issues at all costs by ensuring 
+you and another programmer never work on the same function at the same 
+time. Merging is something software engineers do commonly, but it’s 
+complex enough to avoid if you’re not a software engineer.</p>
 </div>
 </div>
 <div id="knitr" class="section level1">
 <h1>knitr</h1>
-<p>Moving on to another tool, Knitr is an R package which lets us make vignettes like the one you’re reading right now. Vignettes are actually quite powerful and we don’t use most of their potential in our documents. They are <em>dynamic documents.</em> For example, sample code written in a vignette can be run in R automatically as you read through it, so that the vignette acts as a guided tour of the program, rather than a static document. It does this by automatically generating and HTML document (the same as a web page) and the .r code file and the links between them to show the R output on the HTML page. Whdn you’re writing a new vignette, you do it in a <strong>Markdown language</strong> called rmarkdown. Markdown languages are like the halfway point between code and a word document. HTML is the most commonly known markdown language, and knitr is a tool which takes rmarkdown files (***.rmd) and automatically generates HTML files and .r files. So if you’re writing or editing a vignette, make your changes in the .rmd file. The other two are only to be touched by software.</p>
+<p>Moving on to another tool, Knitr is an R package which lets us make 
+vignettes like the one you’re reading right now. Vignettes are actually 
+quite powerful and we don’t use most of their potential in our 
+documents. They are <em>dynamic documents.</em> For example, sample code
+ written in a vignette can be run in R automatically as you read through
+ it, so that the vignette acts as a guided tour of the program, rather 
+than a static document. It does this by automatically generating and 
+HTML document (the same as a web page) and the .r code file and the 
+links between them to show the R output on the HTML page. Whdn you’re 
+writing a new vignette, you do it in a <strong>Markdown language</strong>
+ called rmarkdown. Markdown languages are like the halfway point between
+ code and a word document. HTML is the most commonly known markdown 
+language, and knitr is a tool which takes rmarkdown files (***.rmd) and 
+automatically generates HTML files and .r files. So if you’re writing or
+ editing a vignette, make your changes in the .rmd file. The other two 
+are only to be touched by software.</p>
 <div id="knitr-1-of-2-code-in-vignettes" class="section level2">
 <h2>Knitr 1 of 2: Code in vignettes</h2>
-<p>For the most part, when creating vignettes, I don’t want my code to run, so when I write code to for the vignette like symmary(cars), I write:</p>
+<p>For the most part, when creating vignettes, I don’t want my code to 
+run, so when I write code to for the vignette like symmary(cars), I 
+write:</p>
 <p>‘’’{r pressure, echo=FALSE, eval=FALSE} plot(pressure) ‘’’</p>
 <p>and in the output it shows as:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">??<span class="kw">plot</span>(pressure)</code></pre></div>
-<p>This is markdown code which tells us it’s about to start running some r code and it will input the object <em>pressure</em> to the function. Another example of using markdown code to create documents is using the hash or number symbol # to make header text, much larger than normal text. This is different from word documents where what you see is what you get.</p>
-<p>The echo=false and eval=false prevent the vignette from evaluating (running) the code or displaying the output if it did. This makes our help files more like boring documents than I think the creators of vignettes intended, but thats what we do.</p>
+<p>This is markdown code which tells us it’s about to start running some r code and it will input the object <em>pressure</em>
+ to the function. Another example of using markdown code to create 
+documents is using the hash or number symbol # to make header text, much
+ larger than normal text. This is different from word documents where 
+what you see is what you get.</p>
+<p>The echo=false and eval=false prevent the vignette from evaluating 
+(running) the code or displaying the output if it did. This makes our 
+help files more like boring documents than I think the creators of 
+vignettes intended, but thats what we do.</p>
 <p>You can read more about the rmarkdown markup language here:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">??knitr::knitr-markdown</code></pre></div>
 <p>and you can read more about knitr here: <a href="http://yihui.name/knitr/" class="uri">http://yihui.name/knitr/</a></p>
 </div>
 <div id="knitr-2-of-2-exporting-your-final-document" class="section level2">
 <h2>knitr 2 of 2: Exporting your final document</h2>
-<p>When you have a finished rmarkdown file (.rmd), you need to transform it into a working vignette by either clicking the handy “Knit” button in Rstudio along the file toolbar (it has a ball of yarn icon), or by calling the knitr::knit2html() function. You can get details on calling that function if you need it from:</p>
+<p>When you have a finished rmarkdown file (.rmd), you need to transform
+ it into a working vignette by either clicking the handy “Knit” button 
+in Rstudio along the file toolbar (it has a ball of yarn icon), or by 
+calling the knitr::knit2html() function. You can get details on calling 
+that function if you need it from:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">??knitr::knit2html</code></pre></div>
 </div>
 </div>
 <div id="roxygen2" class="section level1">
 <h1>roxygen2</h1>
-<p>Much like knitr makes vignettes, roxygen2 makes help files for understanding software functions. Manual pages are a critical part of software, describing what a function does, what inputs it expects, what outputs it returns, and what it does. These used to be written by hand but in modern languages there is a way to generate them from a minimum of writing. You can find all the manual files in the /man/ directory of our package, but none of them need to be touched by a human.</p>
+<p>Much like knitr makes vignettes, roxygen2 makes help files for 
+understanding software functions. Manual pages are a critical part of 
+software, describing what a function does, what inputs it expects, what 
+outputs it returns, and what it does. These used to be written by hand 
+but in modern languages there is a way to generate them from a minimum 
+of writing. You can find all the manual files in the /man/ directory of 
+our package, but none of them need to be touched by a human.</p>
 <div id="roxygen-1-of-3---manual-files" class="section level2">
 <h2>Roxygen 1 of 3 - Manual files</h2>
 <p>Every time you write ?? to see what a function does, like:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">??<span class="kw">allDocs</span>()</code></pre></div>
-<p>The output you see is a generated manual page made by roxygen2. When you add a new function to the package, you’ll need to supply the right code at the top of your function for roxygen to understand it. Here’s what that looks like for the top of the alldocs() function. This is what Ryan wrote into the source code so that roxygen could document that function.</p>
+<p>The output you see is a generated manual page made by roxygen2. When 
+you add a new function to the package, you’ll need to supply the right 
+code at the top of your function for roxygen to understand it. Here’s 
+what that looks like for the top of the alldocs() function. This is what
+ Ryan wrote into the source code so that roxygen could document that 
+function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#' Calls getTextR on all files in a directory joining into corpus. </span>
+<span class="co">#'</span>
+<span class="co">#' @param directory Folder to read files from'</span>
+<span class="co">#' @param onError if skip, skip documents that read wrong.</span>
+<span class="co">#' @param gen_pdf_tools if using a pc set to true. if on a unix server, setting to false will preserve pdf metadata.</span>
+<span class="co">#' @return Corpus of text documents.</span>
+<span class="co">#' @seealso \code{\link{corpus}} </span>
+<span class="co">#' @export</span>
+<span class="co">#' @description  This function will read from a folder documents of the class pdf, docx, doc or txt.</span>
+<span class="co">#' @examples</span>
+<span class="co">#' allDocs("folder")</span></code></pre></div>
 </div>
 <div id="roxygen-2-of-3---roxygen-markup-language" class="section level2">
 <h2>Roxygen 2 of 3 - Roxygen markup language</h2>
-<p>Similar to how knitr above has a special language of symbols to determine what becomes a header and what becomes italics or code, roxygen has a simple markup language it looks for at the top of every function in our source code. Here is a sample of what the roxygen documentation code at the head of the getTextR function looks like:</p>
+<p>Similar to how knitr above has a special language of symbols to 
+determine what becomes a header and what becomes italics or code, 
+roxygen has a simple markup language it looks for at the top of every 
+function in our source code. Here is a sample of what the roxygen 
+documentation code at the head of the getTextR function looks like:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#' Calls getTextR on all files in a directory joining into corpus. </span>
+<span class="co">#'</span>
+<span class="co">#' @param directory Folder to read files from'</span>
+<span class="co">#' @param onError if skip, skip documents that read wrong.</span>
+<span class="co">#' @param gen_pdf_tools if using a pc set to true. if on a unix server, setting to false will preserve pdf metadata.</span>
+<span class="co">#' @return Corpus of text documents.</span>
+<span class="co">#' @seealso \code{\link{corpus}} </span>
+<span class="co">#' @export</span>
+<span class="co">#' @description  This function will read from a folder documents of the class pdf, docx, doc or txt.</span>
+<span class="co">#' @examples</span>
+<span class="co">#' allDocs("folder")</span></code></pre></div>
 <p>The lines with an <span class="citation">@tag</span> are the important ones for roxygen. <span class="citation">@param</span> lists one of the “parameters” which must be given (passed) to the function. <span class="citation">@return</span> specifies the return value, <span class="citation">@seealso</span> lets you link to other functions related to that one, <span class="citation">@description</span> is a publicly visible description of the function, which is essential for searching help files, and finally <span class="citation">@examples</span> shows sample code for how the function might be called in hypothetical scenarios.</p>
 </div>
 <div id="roxygen-3-of-3---generating-roxygen-manual-files-for-the-package." class="section level2">
 <h2>Roxygen 3 of 3 - Generating roxygen manual files for the package.</h2>
-<p>Probably the hardest part with roxygen is getting it to run in the first place. If it gets started it’s likely to finish. The issue is that roxygen expects to run on a whole package at once. It depends on the DESCRIPTION file for our package to describe what’s in the package and who owns it.</p>
-<p>If the package files are not all in order, roxygen will not run. Reading the roxygen guide on defining a package successfully is worth spending your time on. To run roxygen on your package, use the following command:</p>
+<p>Probably the hardest part with roxygen is getting it to run in the 
+first place. If it gets started it’s likely to finish. The issue is that
+ roxygen expects to run on a whole package at once. It depends on the 
+DESCRIPTION file for our package to describe what’s in the package and 
+who owns it.</p>
+<p>If the package files are not all in order, roxygen will not run. 
+Reading the roxygen guide on defining a package successfully is worth 
+spending your time on. To run roxygen on your package, use the following
+ command:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">roxygen2::<span class="kw">roxygenise</span>(<span class="st">"package_directory"</span>)</code></pre></div>
+<p>That’s all for this help file! Good luck!</p>
 </div>
 </div>
 
@@ -173,5 +424,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   })();
 </script>
 
-</body>
-</html>
+
+
+</body></html>
