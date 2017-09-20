@@ -121,11 +121,25 @@ Every time you write ?? to see what a function does, like:
 ```
 The output you see is a generated manual page made by roxygen2.  When you add a new function to the package, you'll need to supply the right code at the top of your function for roxygen to understand it.  Here's what that looks like for the top of the alldocs() function. This is what Ryan wrote into the source code so that roxygen could document that function.
 
+```{r, eval=FALSE}
+#' Calls getTextR on all files in a directory joining into corpus. 
+#'
+#' @param directory Folder to read files from'
+#' @param onError if skip, skip documents that read wrong.
+#' @param gen_pdf_tools if using a pc set to true. if on a unix server, setting to false will preserve pdf metadata.
+#' @return Corpus of text documents.
+#' @seealso \code{\link{corpus}} 
+#' @export
+#' @description  This function will read from a folder documents of the class pdf, docx, doc or txt.
+#' @examples
+#' allDocs("folder")
+```
+
 ## Roxygen 2 of 3 - Roxygen markup language
 
 Similar to how knitr above has a special language of symbols to determine what becomes a header and what becomes italics or code, roxygen has a simple markup language it looks for at the top of every function in our source code. Here is a sample of what the roxygen documentation code at the head of the getTextR function looks like:
 
-```{r, echo=FALSE, eval=FALSE}
+```{r, eval=FALSE}
 #' Calls getTextR on all files in a directory joining into corpus. 
 #'
 #' @param directory Folder to read files from'
@@ -148,7 +162,8 @@ Probably the hardest part with roxygen is getting it to run in the first place. 
 
 If the package files are not all in order, roxygen will not run. Reading the roxygen guide on defining a package successfully is worth spending your time on. To run roxygen on your package, use the following command:
 
-```{r, echo=FALSE, eval=FALSE}
+```{r, eval=FALSE}
 roxygen2::roxygenise("package_directory")
 ```
 
+That's all for this help file! Good luck!
