@@ -1,18 +1,15 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-
-<meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="pandoc" />
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="pandoc">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="author" content="Ryan P Scott &amp; Graham Andrews" />
+<meta name="author" content="Ryan P Scott &amp; Graham Andrews">
 
-<meta name="date" content="2017-09-14" />
+<meta name="date" content="2017-09-28">
 
 <title>An Introduction to Computer Assisted Portfolio Review</title>
 
@@ -59,103 +56,403 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 
-<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css">
 
-</head>
+<script type="text/javascript" src="An%20Introduction%20to%20Computer%20Assisted%20Portfolio%20Review_files/MathJax.js"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
 
-<body>
+<body><div id="MathJax_Message" style="display: none;"></div>
 
 
 
 
 <h1 class="title toc-ignore">An Introduction to Computer Assisted Portfolio Review</h1>
 <h4 class="author"><em>Ryan P Scott &amp; Graham Andrews</em></h4>
-<h4 class="date"><em>2017-09-14</em></h4>
+<h4 class="date"><em>2017-09-28</em></h4>
 
 
 
-<p>This tookit provides a set of resources for using the EPAR Text Tools package to analyze textual documents. This leverages the R programming language for the conduct of portfolio analysis and review. The tools rely on text mining, natural language processing, and machine learning programs developed by other R users, and as such heavily relies on code developed by other packages. Thus, it may be thought of as a set of tools combining other packages and thus enabling portfolio review rather than a new package for conduct of text analysis.</p>
+<p>This tookit provides a set of resources for using the EPAR Text Tools
+ package to analyze textual documents. This leverages the R programming 
+language for the conduct of portfolio analysis and review. The tools 
+rely on text mining, natural language processing, and machine learning 
+programs developed by other R users, and as such heavily relies on code 
+developed by other packages. Thus, it may be thought of as a set of 
+tools combining other packages and thus enabling portfolio review rather
+ than a new package for conduct of text analysis.</p>
 <div id="introduction-to-portfolio-review-and-why-its-done" class="section level2">
 <h2>Introduction to Portfolio Review and why it’s done</h2>
-<p>Granting agencies, foundations, and donors often possess large quantities of textual data which they are unable to quickly and efficiently coalesce into meaningful evidence about theories of program change. After a foundation has spent millions of dollars on hundreds of projects, in hundreds of locations, employing thousands of different indicators and outcome measures, based on variously well-articulated theories of change, it is impossible with any reasonable level of confidence to 1. estimate the collective impact of a portfolio of investments within a foundation; 2. estimate the collective impact of investments across foundations; and 3. know that non-consenting individuals have not been made worse off (despite good intent). This is a problem of measurement and accountability for foundations and the public.</p>
-<p>Portfolio management is a common method for analyzing a grant strategy. Portfolio management allows publics and foundations to identify assets and funding amounts connect spending to theories and outcomes (Sleet, Moffett, and Stevens 2008). Approaches to portfolio management such as the Balanced Scorecard have been useful in directing private and public financial investments in a manner that aligns financial goals with mission goals (Robert S. Kaplan 2001; Hoque 2014/3). These tools aim to connect programs to specific objectives and measures, providing organizations with clear and measureable objectives across multiple value areas. Transparency can help foundations to confront commonly identified missteps of public foundations including mission ambiguity (Eisenberg 1984) and institutional myth (Meyer and Rowan 1977), However, use of such evaluative tools tend to be one-off, tailor made to individual foundations, used to justify spending, or adopted by only the largest research foundations (Hyndman and McConville 2016); (Sleet, Moffett, and Stevens 2008; Schmitz and Schillo 2005; Horton and Mackay 2003).</p>
-<p>Portfolio management can either be prospective and retrospective, helping to plan future activities strategies or technologies in light of current assets and risks (Oliveira and Rozenfeld 2010; R. S. Kaplan and Norton 1995). We term the application of portfolio assessment to characterize past actions and assessments with the purpose of influencing prospective management portfolio review. However, portfolio review is limited within foundations. Previously, large organizations possessing diverse funding areas have been challenged by a lack of tools for scaling portfolio reviews across widely differing domains of investment as well as by cognitive and practical limitations of the boundedly rational actors who must run such organizations (Selznick 1996; Simon 1972). Faced with limited time, diverse mission goals, and thousands of objectives, analyzing a portfolio of projects is simply too time consuming, costly, and threatening for program managers who, given limited time frames of employment, must optimize resource allocation not necessarily return on investment.</p>
-<p>Current portfolio review methods rely on hand coding of project documentsâa process that takes countless manhours and limits the ability of foundations to apply porfolio review in adaptive decision making settings. As a result, foundations need better tools for analyzing spending and performance information across portfolios. This includes developing methodologies for portfolio review that are cost effective, scaleable, and rapidly deployable so that foundations can learn from current and past investments, comparing spending and impact against expectations and against each other in order to target funding to programs with proven effectiveness, identify gaps in theory, and exploit under-utilized opportunities.</p>
-<p>However, the field of public administration is increasingly adopting the use of text mining methodologies and computational social scientific approaches for characterizing large textual databases. These methods provide an avenue for scaling portfolio review to a much wider array of organizations who traditionally lacked resources for conduct of retrospective portfolio management strategies.</p>
-<p>We propose and demonstrate the use of data analytic tools including natural language processing and both supervised and unsupervised machine learning to rapidly characterize funding documents identifying theories of change, tying these theories of change to funding levels, and identifying how funding of specific interventions resulted in changes in outcomes of concern to various foundations. The novelty of this new approach is we plan to utilize data analytic tools to automate many of the above processes, providing a manner of reducing the labor and time costs facing a foundation hoping to conduct a portfolio review. Thus, while our methodologies are not novel, nor are portfolio reviews new concepts, we believe that the application of data analytic tools within foundation portfolio review has the potential to dramatically improve the connection between theory and investment for public organizations. Natural language processing and machine learning are common tools for language extraction and coding across a growing range of fields including health, economics, and political science (Carvalho, Freitas, and da Silva 2013; Turian 2013; Wilkerson, Smith, and Stramp 2013; Lee 2000). Specifically, tools allowing for extraction of relations between words are promising for portfolio review because they allow connecting actors, actions, and outcomes identified within programmatic documents to corresponding investments (Turian 2013).</p>
+<p>Granting agencies, foundations, and donors often possess large 
+quantities of textual data which they are unable to quickly and 
+efficiently coalesce into meaningful evidence about theories of program 
+change. After a foundation has spent millions of dollars on hundreds of 
+projects, in hundreds of locations, employing thousands of different 
+indicators and outcome measures, based on variously well-articulated 
+theories of change, it is impossible with any reasonable level of 
+confidence to 1. estimate the collective impact of a portfolio of 
+investments within a foundation; 2. estimate the collective impact of 
+investments across foundations; and 3. know that non-consenting 
+individuals have not been made worse off (despite good intent). This is a
+ problem of measurement and accountability for foundations and the 
+public.</p>
+<p>Portfolio management is a common method for analyzing a grant 
+strategy. Portfolio management allows publics and foundations to 
+identify assets and funding amounts connect spending to theories and 
+outcomes (Sleet, Moffett, and Stevens 2008). Approaches to portfolio 
+management such as the Balanced Scorecard have been useful in directing 
+private and public financial investments in a manner that aligns 
+financial goals with mission goals (Robert S. Kaplan 2001; Hoque 
+2014/3). These tools aim to connect programs to specific objectives and 
+measures, providing organizations with clear and measureable objectives 
+across multiple value areas. Transparency can help foundations to 
+confront commonly identified missteps of public foundations including 
+mission ambiguity (Eisenberg 1984) and institutional myth (Meyer and 
+Rowan 1977), However, use of such evaluative tools tend to be one-off, 
+tailor made to individual foundations, used to justify spending, or 
+adopted by only the largest research foundations (Hyndman and McConville
+ 2016); (Sleet, Moffett, and Stevens 2008; Schmitz and Schillo 2005; 
+Horton and Mackay 2003).</p>
+<p>Portfolio management can either be prospective and retrospective, 
+helping to plan future activities strategies or technologies in light of
+ current assets and risks (Oliveira and Rozenfeld 2010; R. S. Kaplan and
+ Norton 1995). We term the application of portfolio assessment to 
+characterize past actions and assessments with the purpose of 
+influencing prospective management portfolio review. However, portfolio 
+review is limited within foundations. Previously, large organizations 
+possessing diverse funding areas have been challenged by a lack of tools
+ for scaling portfolio reviews across widely differing domains of 
+investment as well as by cognitive and practical limitations of the 
+boundedly rational actors who must run such organizations (Selznick 
+1996; Simon 1972). Faced with limited time, diverse mission goals, and 
+thousands of objectives, analyzing a portfolio of projects is simply too
+ time consuming, costly, and threatening for program managers who, given
+ limited time frames of employment, must optimize resource allocation 
+not necessarily return on investment.</p>
+<p>Current portfolio review methods rely on hand coding of project 
+documents—a process that takes countless manhours and limits the ability
+ of foundations to apply porfolio review in adaptive decision making 
+settings. As a result, foundations need better tools for analyzing 
+spending and performance information across portfolios. This includes 
+developing methodologies for portfolio review that are cost effective, 
+scaleable, and rapidly deployable so that foundations can learn from 
+current and past investments, comparing spending and impact against 
+expectations and against each other in order to target funding to 
+programs with proven effectiveness, identify gaps in theory, and exploit
+ under-utilized opportunities.</p>
+<p>However, the field of public administration is increasingly adopting 
+the use of text mining methodologies and computational social scientific
+ approaches for characterizing large textual databases. These methods 
+provide an avenue for scaling portfolio review to a much wider array of 
+organizations who traditionally lacked resources for conduct of 
+retrospective portfolio management strategies.</p>
+<p>We propose and demonstrate the use of data analytic tools including 
+natural language processing and both supervised and unsupervised machine
+ learning to rapidly characterize funding documents identifying theories
+ of change, tying these theories of change to funding levels, and 
+identifying how funding of specific interventions resulted in changes in
+ outcomes of concern to various foundations. The novelty of this new 
+approach is we plan to utilize data analytic tools to automate many of 
+the above processes, providing a manner of reducing the labor and time 
+costs facing a foundation hoping to conduct a portfolio review. Thus, 
+while our methodologies are not novel, nor are portfolio reviews new 
+concepts, we believe that the application of data analytic tools within 
+foundation portfolio review has the potential to dramatically improve 
+the connection between theory and investment for public organizations. 
+Natural language processing and machine learning are common tools for 
+language extraction and coding across a growing range of fields 
+including health, economics, and political science (Carvalho, Freitas, 
+and da Silva 2013; Turian 2013; Wilkerson, Smith, and Stramp 2013; Lee 
+2000). Specifically, tools allowing for extraction of relations between 
+words are promising for portfolio review because they allow connecting 
+actors, actions, and outcomes identified within programmatic documents 
+to corresponding investments (Turian 2013).</p>
 </div>
 <div id="part-1-creating-a-research-corpus-to-analyize-some-sample-questions" class="section level2">
 <h2>Part 1: Creating a research corpus to analyize some sample questions</h2>
 <p>We begin by addressing a sample question:</p>
-<p><strong><em>How have the research projects conducted by the Evans School Policy Analysis and Research (EPAR) group informed the three aims of the research foci, specifically gender, adoption, and measurement?</em></strong></p>
+<p><strong><em>How have the research projects conducted by the Evans 
+School Policy Analysis and Research (EPAR) group informed the three aims
+ of the research foci, specifically gender, adoption, and measurement?</em></strong></p>
 <p>Second,</p>
-<p><strong><em>what potential synergies exist across these current research topics which may inform the comparative advantage of the EPAR research group?</em></strong></p>
-<p>Within each of the three (gender, adoption, and measurement), we demonstrate how the tools we are developing can be applied for addressing a key question that may face an organization like ours. This process can be applied to any question you wish to ask of your own set of documents.</p>
+<p><strong><em>what potential synergies exist across these current 
+research topics which may inform the comparative advantage of the EPAR 
+research group?</em></strong></p>
+<p>Within each of the three (gender, adoption, and measurement), we 
+demonstrate how the tools we are developing can be applied for 
+addressing a key question that may face an organization like ours. This 
+process can be applied to any question you wish to ask of your own set 
+of documents.</p>
 </div>
 <div id="installing-the-package." class="section level2">
 <h2>Installing the package.</h2>
-<!-- Proposed cut because the installation of a google compute server is a) beyond the ability of average users and b) not within their time budget.  We may want to replace with advice that they consider having these tools set up in a central place if they are going to run them often on multiple machines
+<p><strong><em>Please skip this section if you’re using the Evans School
+ terminal server or another machine with the text analysis tools already
+ installed</em></strong> <!-- Proposed cut because the installation of a google compute server is a) beyond the ability of average users and b) not within their time budget.  We may want to replace with advice that they consider having these tools set up in a central place if they are going to run them often on multiple machines
 
 #Because many of the tools run here take time and depend on externally installed packages, it might be easier to run the code on an external server rather than working to ensure every package is installed at your workstation. To facilitate your setting up a server, you can find directions for how to set up a Google Cloud Compute insance at [this link]
-#(http://htmlpreview.github.io/?https://raw.githubusercontent.com/ryscott5/eparTextTools/master/vignettes/GoogleDirections.html). -->
-<p>The package, epartexttools, along with its dependencies, can be installed by using the following three-step process: First, set your working directory. I often use a new folder I create under “my documents” in windows, but others have had success using a folder in the EPAR shared server.</p>
+#(http://htmlpreview.github.io/?https://raw.githubusercontent.com/ryscott5/eparTextTools/master/vignettes/GoogleDirections.html). --></p>
+<p>The package, epartexttools, along with its dependencies, can be 
+installed by using the following three-step process: First, set your 
+working directory. I often use a new folder I create under “my 
+documents” in windows, but others have had success using a folder in the
+ EPAR shared server.</p>
 <p>For me, that command reads like this (replace everything in quotes with the complete path to your own):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;C:/Users/Graham/Documents/R/Git_Storage/eparTextTools&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">"C:/Users/Graham/Documents/R/Git_Storage/eparTextTools"</span>)</code></pre></div>
 <p>Then you should start to install epartexttools with the following command:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools::<span class="kw">install_github</span>(<span class="st">&quot;ryscott5/epartexttools&quot;</span>, <span class="dt">dependencies=</span><span class="ot">TRUE</span>)</code></pre></div>
-<p>Second, check the output (right at the end) for any error that says a package might have failed to install. If the package is named PACKAGE_NAME then the error will look like:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;Error in library(PACKAGE_NAME) : there is no package called âPACKAGE_NAMEâ&quot;</span> </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools::<span class="kw">install_github</span>(<span class="st">"ryscott5/epartexttools"</span>, <span class="dt">dependencies=</span><span class="ot">TRUE</span>)</code></pre></div>
+<p>Second, check the output (right at the end) for any error that says a
+ package might have failed to install. If the package is named 
+PACKAGE_NAME then the error will look like:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">"Error in library(PACKAGE_NAME) : there is no package called ‘PACKAGE_NAME’"</span> </code></pre></div>
 <p>or</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;Error: dependencies 'PACKAGE_NAME' and 'PACKAGE_NAME' are not available for package 'epartexttools&quot;&quot;&quot;</span> </code></pre></div>
-<p>I don’t know exactly why it doesn’t install all of the packages when it successfully covers so many, but it’s normal to have a half dozen packages fail to install. What we do next is manually install the one that failed and start again.</p>
-<p>Third, install that package manually using the line below with the correct package name added, then restart the process by running step 1.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;PACKAGE_NAME&quot;</span>, <span class="dt">dependencies=</span><span class="ot">TRUE</span>)</code></pre></div>
-<p>This can take several rounds of failed packages. So long as the errors are about a different package than before, keep at it! When there are no more errors, the packages have all been installed.</p>
-<p>Now we can move on to loading the package into memory to use it. Prior to loading the package, it is very important to first set the java parameters to a larger “swap” size which is done via the following code, thus, prior to calling library, the code below expands the java memory limit to 4 GB, and the second line loads our package.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">java.parameters =</span> <span class="st">&quot;-Xmx4g&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">"Error: dependencies 'PACKAGE_NAME' and 'PACKAGE_NAME' are not available for package 'epartexttools"""</span> </code></pre></div>
+<p>I don’t know exactly why it doesn’t install all of the packages when 
+it successfully covers so many, but it’s normal to have a half dozen 
+packages fail to install. What we do next is manually install the one 
+that failed and start again.</p>
+<p>Third, install that package manually using the line below with the 
+correct package name added, then restart the process by running step 1.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"PACKAGE_NAME"</span>, <span class="dt">dependencies=</span><span class="ot">TRUE</span>)</code></pre></div>
+<p>This can take several rounds of failed packages. So long as the 
+errors are about a different package than before, keep at it! When there
+ are no more errors, the packages have all been installed.</p>
+</div>
+<div id="loading-the-package-to-use-it" class="section level2">
+<h2>Loading the package to use it</h2>
+<p>Now we can move on to loading the package into memory to use it. 
+Prior to loading the package, it is very important to first set the java
+ parameters to a larger “swap” size which is done via the following 
+code, thus, prior to calling library, the code below expands the java 
+memory limit to 4 GB, and the second line loads our package.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">java.parameters =</span> <span class="st">"-Xmx4g"</span>)
 <span class="kw">library</span>(epartexttools)</code></pre></div>
 </div>
 <div id="aquiring-some-documents-to-study" class="section level2">
 <h2>Aquiring some documents to study</h2>
-<p>We begin by reading in a corpus. If you are just testing the tools you can use the example_documents() command to create a folder titled “demo.docs.folder” in the current working directory filled with example text from EPAR’s past research.</p>
-<p>Otherwise, find the full path (“c:_project_documents&quot; for example). Note that you will have to reverse the direction of the slashes in a basic windows folder path from  to / because R prefers its folder paths to use the forward slash.</p>
-<p>If some of your documents are PDFs without associated text (such as early scanners would output) you can get the text from those files by running the OCR_DOCS() function. Be careful as this can take about an hour to run on 20 documents of an average 30 page length, and most PDFs do not need this treatment. It’s best to separate out the PDFs in which you can highlight the text so that you’re running this command on as few documents as possible to save time. If the full path to your documents is (for example) “c:/our_project/our_documents” (remember the forward slashes for R folder styles) then you would run the command:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">OCR_DOCs</span>(<span class="st">&quot;c:/our_project/our_documents&quot;</span>)</code></pre></div>
-<p>If you use the OCR_DOCs() function it will a) create new raw text versions of those documents and b) move the text-less PDF files it procesed into a folder which is specially exempted from being added to a corpus to avoid doublecounting.</p>
-<p>Now that your files are ready, you can create a corpus allDocs() command. Pass to the alldocs() function the full path (or path relative to the R working directory) of the files you want. Documents are read into R as a textual corpus–using the TM package. This enables preservation of document metatdata alongside document text. Metadata such as ids and timestamps is stored in the .$meta location of each corpus.</p>
+<p>We begin by reading in a corpus. If you are just testing the tools 
+you can use the example_documents() command to create a folder titled 
+“demo.docs.folder” in the current working directory filled with example 
+text from EPAR’s past research.</p>
+<p>Otherwise, find the full path (“c:_project_documents" for example). 
+Note that you will have to reverse the direction of the slashes in a 
+basic windows folder path from &nbsp;to / because R prefers its folder 
+paths to use the forward slash.</p>
+<p>If some of your documents are PDFs without associated text (such as 
+early scanners would output) you can get the text from those files by 
+running the OCR_DOCS() function. Be careful as this can take about an 
+hour to run on 20 documents of an average 30 page length, and most PDFs 
+do not need this treatment. It’s best to separate out the PDFs in which 
+you can highlight the text so that you’re running this command on as few
+ documents as possible to save time. If the full path to your documents 
+is (for example) “c:/our_project/our_documents” (remember the forward 
+slashes for R folder styles) then you would run the command:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">OCR_DOCs</span>(<span class="st">"c:/our_project/our_documents"</span>)</code></pre></div>
+<p>If you use the OCR_DOCs() function it will a) create new raw text 
+versions of those documents and b) move the text-less PDF files it 
+procesed into a folder which is specially exempted from being added to a
+ corpus to avoid doublecounting.</p>
+<p>Now that your files are ready, you can create a corpus allDocs() 
+command. Pass to the alldocs() function the full path (or path relative 
+to the R working directory) of the files you want. Documents are read 
+into R as a textual corpus–using the TM package. This enables 
+preservation of document metatdata alongside document text. Metadata 
+such as ids and timestamps is stored in the .$meta location of each 
+corpus.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#optional, load a set of files for testing</span>
 <span class="kw">example_documents</span>()
-<span class="co">#if using your own files in another location, replace &quot;demo.docs.folder&quot; with the path to your files.</span>
-corpus1&lt;-<span class="kw">allDocs</span>(<span class="dt">directory=</span><span class="st">&quot;demo.docs.folder&quot;</span>,<span class="dt">SkiponError=</span><span class="ot">FALSE</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Make directory for saving and save a copy of the corpus</span>
-epartexttools::<span class="kw">makeworking</span>(<span class="st">&quot;Research.Grants&quot;</span>)</code></pre></div>
+<span class="co">#if using your own files in another location, replace "docs_folder" with the path to your files. DON'T FORGET TO REVERSE THE SLASHES if you're on Windows!</span>
+corpus1&lt;-<span class="kw">allDocs</span>(<span class="dt">directory=</span><span class="st">"docs_folder"</span>,<span class="dt">SkiponError=</span><span class="ot">FALSE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Make directory for saving and save a copy of the corpus. This folder can be named anything you like, but I picked "eparTextTools_output" here. Change it if you like! </span>
+epartexttools::<span class="kw">makeworking</span>(<span class="st">"eparTextTools_output"</span>)</code></pre></div>
 <p>Save your new corpus in the working folder we just made so that it isn’t lost.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">saveRDS</span>(corpus1,<span class="kw">file.path</span>(workingfolder, <span class="st">&quot;corpus.rds&quot;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">saveRDS</span>(corpus1,<span class="kw">file.path</span>(workingfolder, <span class="st">"corpus.rds"</span>))</code></pre></div>
 <p>Load the corpus from save immediately so you can be sure you’re working with the same data you have saved.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">corpus1&lt;-<span class="kw">readRDS</span>(<span class="kw">file.path</span>(workingfolder,<span class="st">&quot;corpus.rds&quot;</span>))</code></pre></div>
-<p>Currently, the allDocs() command supports parsing of txt, pdf, docx, doc, or txt files. Behind the scenes, is a “wrapper function” which reads a directory files using the getTextR() function, which itself utilizes modified versions of the read_doc(), readPDF(), or readPlain() functions from the tm package, and the read_docx() function from qdapTools.</p>
-<p>Once documents are read into a corpus, the metadata from the documents can be extracted by loooping through elements included within the document, for example;</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">corpus1&lt;-<span class="kw">readRDS</span>(<span class="kw">file.path</span>(workingfolder,<span class="st">"corpus.rds"</span>))</code></pre></div>
+<p>Currently, the allDocs() command supports parsing of txt, pdf, docx, 
+doc, or txt files. Behind the scenes, is a “wrapper function” which 
+reads a directory files using the getTextR() function, which itself 
+utilizes modified versions of the read_doc(), readPDF(), or readPlain() 
+functions from the tm package, and the read_docx() function from 
+qdapTools.</p>
+<p>Once documents are read into a corpus, the metadata from the 
+documents can be extracted by looping through elements included within 
+the document, for example;</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lapply</span>(corpus1,function(X){X$meta})[[<span class="dv">1</span>]]</code></pre></div>
-<p>This method of reading in documents treats all documents as unstructured and keeps all elements of text included within a document. It is thus useful for characterizing batches of documents for which there is no common structure, so we aren’t losing information by ignoring the structure of the documents. If a common structure does exist for documents, then elements of a document can be extracted via the tools described in the “Structured Document Analysis” vignette, or using a pattern matching package in R (like stringr).</p>
+<p>This method of reading in documents treats all documents as 
+unstructured and keeps all elements of text included within a document. 
+It is thus useful for characterizing batches of documents for which 
+there is no common structure, so we aren’t losing information by 
+ignoring the structure of the documents. If a common structure does 
+exist for documents, then elements of a document can be extracted via 
+the tools described in the “Structured Document Analysis” vignette, or 
+using a pattern matching package in R (like stringr).</p>
 <p>At any rate we have our files in a nice single corpus to analyze together at this point. It’s time to begin to analyze them.</p>
 <!--suggest we cut this: it's not related to the analysis process at hand
 #When beginning a text analysis process, a good starting point is consideration of the is the unit of analysis which we will use for a study. On the one hand, each document may represent a theory of policy change or for a program under study. More than likely however, within a given document or proposal description, more than one theory of change or pathway will be described. Clustering documents in a way that assigns each proposal to a single categegory or cluster would ignore this potential variation. Luckily for the purposes of portfolio review, we are not the first to recognize that bodies of text are not monolithic entities! in fact, a whole series of text analytic progams have been develop that attempt to understand the semantic meanings within text, the connections between areas of text, and how near and far apart bodies of text are associated. -->
-<p>As a start, it is useful to step back and reconsider what a “document” entails. While up to this point we have considered each unique PDF, docx, or doc as a “document” for study, taking a liberal approach to the word “document” will enable a more fine-grained approach to text analysis. For example, a document could refer to a sentence or a paragraph. Or inversely, a document could refer to a group of documents which are all part of one proposal. As such, the term document can be somewhat confusing!</p>
-<p>If you have multiple different files about the same project, one way to look at them is as a single giant document about that project. Then we can count word frequencies or look for word associations across all the documents at once.</p>
-<p>For the purposes of clarity, it is thus easier to think about a set of documents as a set of strings or a set of character vectors. For each string–which might represent an entire proposal or a just a sentence from a proposal depending on the question at hand– a researcher might decide on a set number of variables, and they could construct a spreadsheet where in one column are a set of strings, and in the other columns are features describing those strings such as funding agency, year, author, grant status, etc. Just as in an introductory statistics class the unit of anlysis is the rows in the spreadsheet while the columns represent variable. Text is just one variable we might consider in an analysis. Moreover, we might aggregate or disagregate text into bigger or larger chunks thus changing the unit of anlysis.</p>
-<p>When we break text into smaller chunks it is generally refered to as tokenization. Joining segments of text is concatonization. When we count word frequencies, we are tokenizing text into words. We then count of often each word occurs in each document.</p>
+<p>As a start, it is useful to step back and reconsider what a 
+“document” entails. While up to this point we have considered each 
+unique PDF, docx, or doc as a “document” for study, taking a liberal 
+approach to the word “document” will enable a more fine-grained approach
+ to text analysis. For example, a document could refer to a sentence or a
+ paragraph. Or inversely, a document could refer to a group of documents
+ which are all part of one proposal. As such, the term document can be 
+somewhat confusing!</p>
+<p>If you have multiple different files about the same project, one way 
+to look at them is as a single giant document about that project. Then 
+we can count word frequencies or look for word associations across all 
+the documents at once.</p>
+<p>For the purposes of clarity, it is thus easier to think about a set 
+of documents as a set of strings or a set of character vectors. For each
+ string–which might represent an entire proposal or a just a sentence 
+from a proposal depending on the question at hand– a researcher might 
+decide on a set number of variables, and they could construct a 
+spreadsheet where in one column are a set of strings, and in the other 
+columns are features describing those strings such as funding agency, 
+year, author, grant status, etc. Just as in an introductory statistics 
+class the unit of anlysis is the rows in the spreadsheet while the 
+columns represent variable. Text is just one variable we might consider 
+in an analysis. Moreover, we might aggregate or disagregate text into 
+bigger or larger chunks thus changing the unit of anlysis.</p>
+<p>When we break text into smaller chunks it is generally refered to as 
+tokenization. Joining segments of text is concatonization. When we count
+ word frequencies, we are tokenizing text into words. We then count of 
+often each word occurs in each document.</p>
 <div id="cleaning-and-parsing-text" class="section level3">
 <h3>Cleaning and Parsing Text</h3>
-<p>Within R texts are stored in the corpus as character strings facilitating use of different analysis packages. While we can break those texts into smaller segements or expand them into larger segments, we often want to do so in a systematic way. To begin, we will explore texts with the unit of analysis being individual reports which were downloaded to build the demo dataset. Each report is a study from the EPAR Website.</p>
-<p>While we could take the texts as-is, there are lots of features in text we generally dont care much about–blank lines, periods, capitalization, white spaces, margins, random-chunks-of-meaningless-text. As a result, we <em>may</em> want to perform common tasks such as removing whitespace, eliminating stopwords (boring words), removing punctuation, and stemming (taking words down to their roots). All of these are accomplished rapidly by the doc_clean_process() command which streamlines functionality from the tm package for rapid portfolio review. It tokenizes documents into words and then stems words before joining them back into a a corpus.</p>
+<p>Within R texts are stored in the corpus as character strings 
+facilitating use of different analysis packages. While we can break 
+those texts into smaller segements or expand them into larger segments, 
+we often want to do so in a systematic way. To begin, we will explore 
+texts with the unit of analysis being individual reports which were 
+downloaded to build the demo dataset. Each report is a study from the 
+EPAR Website.</p>
+<p>While we could take the texts as-is, there are lots of features in 
+text we generally dont care much about–blank lines, periods, 
+capitalization, white spaces, margins, 
+random-chunks-of-meaningless-text. As a result, we <em>may</em> want to 
+perform common tasks such as removing whitespace, eliminating stopwords 
+(boring words), removing punctuation, and stemming (taking words down to
+ their roots). All of these are accomplished rapidly by the 
+doc_clean_process() command which streamlines functionality from the tm 
+package for rapid portfolio review. It tokenizes documents into words 
+and then stems words before joining them back into a a corpus.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#cleans elements of corpus</span>
 corpus2&lt;-<span class="kw">doc_clean_process</span>(corpus1)</code></pre></div>
 <p>Because we’ve now made a new corpus, we should save it and load from it as we did the last one:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">saveRDS</span>(corpus2,<span class="kw">file.path</span>(workingfolder,<span class="st">&quot;corpus_cleaned.rds&quot;</span>))</code></pre></div>
-<p>A second function, TermDocumentMatrix(), creates a word frequency matrix, and we’re going to also remove sparse terms with removeSparseTermss() allowing graphical and exploratory analysis of text. A Term Document Matrix structures a corpus into a matrix where for every word there is a count of how often that word occurs within a given document. Again, remember, our unit of analysis is going to be a whole set of documents, so we can use a term document matrix to study how term usage varies across that set. A Term Document Matrix, however, stores, documents in columns and words in each row. Notice, the unit of anlysis could thus be either words (with counts in each report) or reports (which counts of words in each). We will put the term document matrix in a named variable called “tdm” so we can use it again.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#converts corpus into term document matrix, removing terms that occur infrequently (can be adjusted by manipulating that .6)</span>
-tdm&lt;-<span class="kw">TermDocumentMatrix</span>(corpus2) %&gt;%<span class="st"> </span><span class="kw">removeSparseTerms</span>(.,.<span class="dv">8</span>)</code></pre></div>
-<p>Now that we have a term document matrix, we can create analyses of the text. That will be covered in the next document on output options.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">saveRDS</span>(corpus2,<span class="kw">file.path</span>(workingfolder,<span class="st">"corpus_cleaned.rds"</span>))</code></pre></div>
+<p>A second function, TermDocumentMatrix(), creates a word frequency 
+matrix, and we’re going to also remove sparse terms with 
+removeSparseTermss() allowing graphical and exploratory analysis of 
+text. A Term Document Matrix structures a corpus into a matrix where for
+ every word there is a count of how often that word occurs within a 
+given document. Again, remember, our unit of analysis is going to be a 
+whole set of documents, so we can use a term document matrix to study 
+how term usage varies across that set. A Term Document Matrix, however, 
+stores, documents in columns and words in each row. Notice, the unit of 
+anlysis could thus be either words (with counts in each report) or 
+reports (which counts of words in each). We will put the term document 
+matrix in a named variable called “tdm” so we can use it again.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#First, load the "magrittr" package so that the %&gt;% in the next command is understood</span>
+<span class="kw">library</span>(magrittr)
+<span class="kw">library</span>(tm)
+<span class="co">#converts corpus into term document matrix, removing terms that occur infrequently (can be adjusted by manipulating that .6)</span>
+tdm&lt;-tm::<span class="kw">TermDocumentMatrix</span>(corpus2) %&gt;%<span class="st"> </span><span class="kw">removeSparseTerms</span>(.,.<span class="dv">8</span>)</code></pre></div>
+<p>Now that we have a term document matrix, we can create analyses of 
+the text. That will be covered in the next document on output options.</p>
 <!--
 #Part 2: Outputting graphics for display and analysis
 ##An overview of output options
@@ -342,5 +639,6 @@ runSTM(workingfolder)
   })();
 </script>
 
-</body>
-</html>
+
+
+</body></html>
