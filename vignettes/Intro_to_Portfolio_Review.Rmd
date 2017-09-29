@@ -41,7 +41,7 @@ Second,
 Within each of the three (gender, adoption, and measurement), we demonstrate how the tools we are developing can be applied for addressing a key question that may face an organization like ours. This process can be applied to any question you wish to ask of your own set of documents.
 
 ##Installing the package.
-
+***Please skip this section if you're using the Evans School terminal server or another machine with the text analysis tools already installed***
 <!-- Proposed cut because the installation of a google compute server is a) beyond the ability of average users and b) not within their time budget.  We may want to replace with advice that they consider having these tools set up in a central place if they are going to run them often on multiple machines
 
 #Because many of the tools run here take time and depend on externally installed packages, it might be easier to run the code on an external server rather than working to ensure every package is installed at your workstation. To facilitate your setting up a server, you can find directions for how to set up a Google Cloud Compute insance at [this link]
@@ -77,6 +77,8 @@ install.packages("PACKAGE_NAME", dependencies=TRUE)
 ```
 
 This can take several rounds of failed packages. So long as the errors are about a different package than before, keep at it! When there are no more errors, the packages have all been installed.
+
+##Loading the package to use it
 
 Now we can move on to loading the package into memory to use it. Prior to loading the package, it is very important to first set the java parameters to a larger "swap" size which is done via the following code, thus, prior to calling library, the code below expands the java memory limit to 4 GB, and the second line loads our package.
 
