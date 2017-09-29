@@ -1,0 +1,171 @@
+---
+title: "Graphical Outputs"
+author: "Graham Andrews"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    fig_width: 7
+    fig_height: 6
+vignette: >
+  %\VignetteIndexEntry{Graphical Outputs using a Term Document Matrix}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This vignette covers several standard graphics outputs we've used with the eparTextTools module.  You can see examples of each one in the "Graphical Outputs of the Text Tools" powerpoint in the documentation folder.  These are not the only options for graphical output! They have just been made a little easier. You have the entire ggplot2 package at your fingertips, and the sky is really the limit. However, these are the easy ones.
+
+
+#Outputting graphics for display and analysis
+##An overview of output options
+
+To begin exploring documents, we highlight two commands which provide useful interfaces for seaching documents and clustering documents. When exploring a textual corpora, one often has some sort of an idea of what kinds of information they are interested in. For example, for the above questions we might be interested in what documents discuss terms such as women, gender, access. What if there are other terms closely related or synonyms of those?
+
+##wfplots()
+The first thing you should do with any new set of documents is check the most common terms, using wfplots(). The function needs 4 inputs but the second one is the one that really matters - how many top terms to look for.  For example: wfplots( termDocumentMatrix, 7, shortenDoc = TRUE, typePlot = 2 ). As is common with most of the output functions, the term document matrix is the first thing needed. I suggest leaving the other inputs as they are and just changing the second one, from 5 to 7 or 10 to see which other words you might be interested in.
+
+The objects created by wfplots() can be edited by adding on additional functions, by filtering the term document matrix, or by changing the typePlot. 
+
+```{r, eval=FALSE}
+wfplots(tdm[,c(2,10,12)],typePlot=2, 5,shortendoc=TRUE)
+```
+
+##assocPrettyOneStep()
+The second important function is assocPrettyOneStep(). This function tells you which other words commonly occur with the word you provide. It's a good idea to run this at least once for each of your terms to make sure you aren't missing any. Here, we generate a table where we show words which occur most commonly with the word gender within the corpus.
+
+```{r, eval=FALSE}
+assocPrettyOneStep("gender",tdm, corpus2,.5)
+```
+
+##wordcount_table()
+The function wordcount_table() is a useful one -- it allows us to search for word frequencies in documents, pulling counts of how many times a word occurs in various documents, and weighting that count by the length of the document if we so desire.
+
+```{r,echo=TRUE, results='asis', eval=FALSE}
+#Searches corpus 1 for the words gender and access based and returns counts based on the term document matrix we built above.
+wordcount_table(c("gender","access"),tdm,corpus1)
+```
+
+wordcount_table() generates an html table which can be saved using the saveWidget() command or which can be used just to interact with the data. By default, the function TermDocumentMatrix weights according to weightTF which just counts term frequencies. We might instead want to weight by the term frequency relative to the document frequency, as below. In this command, rather then generating an interactive table, setting raw=true generates a data.table which can then be manipulated within R.
+
+
+```{r,echo=TRUE, results='asis', eval=FALSE}
+tout<-wordcount_table(c("gender","access"),tm::TermDocumentMatrix(corpus2,control=list(weighting=function(X) tm::weightTfIdf(X, normalize=FALSE))),corpus1,raw=T)
+head(tout[,1:3])
+```
+
+##Narrowing the output by modifying the term document matrix
+The tdm object can be edited to narrow the graphical information presented, for example if we are only interested words within documents which contain the word women, we can use piping to structure the tdm for the graph. The following code creates a heatmap for documents where gender and women both occur at least once, but then clusters those documents based on the 20 most common words across the entire corpus. 
+
+```{r,echo=TRUE, results='asis', eval=FALSE}
+tdm[,as.vector(tdm["gender",])>1] %>% .[,as.vector(.["women",])>1] %>% word_heatmap(.,20)
+```
+
+```{r, eval=FALSE}
+tdm[,as.vector(tdm["gender",])>20] %>% .[,as.vector(.["women",])>10] %>% wfplots(.,typePlot=2,10,shortendoc=TRUE)
+```
+
+```{r, eval=FALSE}
+tdm[,as.vector(tdm["gender",])>20] %>% .[,as.vector(.["women",])>10] %>% wfplots(.,typePlot=1,10,shortendoc=TRUE)+ggtitle("Change X versus Y")
+```
+
+```{r, eval=FALSE}
+interest_plot_bydoc(c("women","farmer","school"),tdm[,1:5])+coord_flip() 
+```
+
+```{r, eval=FALSE}
+interest_plot_bydoc(c("women","farmer","school"),tdm[,1:5]) %>% plotly::ggplotly() 
+```
+
+By editing the term document matrix to include weighting, each of these commands can be used while taking the length of documents into account.
+
+```{r, eval=FALSE}
+TermDocumentMatrix(corpus2[1:10],control=list(weighting=function(x) weightSMART(x))) %>% interest_plot_bydoc(c("women","farmer","school"),.) %>% plotly::ggplotly() 
+```
+
+
+While tokenization into words is great, we often want to know how various words go together and how words form sentences that produce meaning and finally (eventually) causal processses.
+
+Within text analysis, document clustering refers to the grouping of documents into a set of categories based on their semantic concepts. From a program evaluation or portfolio review perspective clustering documents is useful because it can allow us to move beyond user-generated queries to allowing a set of textual data provide evidence about underlying theories of change or policy processes.
+
+For initial clustering of text, we can utilize the d3heatmap package to construct a heatmap of which words are the most common (y axis) across a set of documents (x axis) where the user can select the number of words they are interested in (6 in demo).
+
+```{r,echo=TRUE, results='asis', eval=FALSE}
+word_heatmap(tdm,6)
+
+word_heatmap(tdm,pickwords=c("women","gender","access","land","right","work","labor","yield","security"))
+```
+
+Based on the table, we can observe that the word "equal" is strongly associated with the word gender. We might use this information to cluster our term document matrix and compare documents where "gender" and "equal" occur frequently to other documents.
+
+```{r, eval=FALSE}
+tornadoCompare(tdm,c("gender","equal","femal"),3,10)
+```
+
+Based on this, we might notice that seasons and school are relatively more frequent for research projects targetting gender as are system related studies and studies of households.
+ <!--
+#Document Clustering
+
+In the above analysis, there was a brief intro into document clustering for the creation of the heatmap of words. However, clustering of documents and words is the basis of much of the automated portfolio review toolset and so we will go into it in more detail throughout the rest of the vignette.
+
+##Structuring documents for topic modeling
+
+While up to this point we have taken documents as given, most text analytic methods were developed for smaller chunks of text. Accordingy, it can be useful to break texts into paragraphs or sentences and then to consider the origin document as a covariate operating on that text chunk. We can thus think of the origin document as a categorical factor that has some unknown relationship to the sentence or text chunk. In the code below, we break a corpus of text--named corpus 1, into paragraph chunks preserving the metadata from each previous chunk. In this code we use the pretopicframe2 function which relies on the Parsey McParseface parser.
+
+```{r,eval=FALSE}
+BASE_INPUT<-PreTopicFrame2(corpus1,workingfolder=workingfolder)
+```
+
+
+BASE_INPUT$out$meta$OpID<-BASE_INPUT$out$meta$Orig
+#saves files so you can reload
+saveRDS(BASE_INPUT,file.path(workingfolder,"base_input1.rds"))
+```
+
+###Adding geographic information
+```{r, eval=FALSE}
+buildcliff()
+startcliff()
+library(RCurl)
+library(httr)
+BASE_INPUT$SentFrame$OpID<-BASE_INPUT$SentFrame$Orig
+pred1<-PredictCountryByDoc(BASE_INPUT)
+stopcliff()
+BASE_INPUT$out$meta<-reflectCountryCol(BASE_INPUT$out$meta,pred1,10,FALSE)
+getwd()
+saveRDS(BASE_INPUT,file.path(workingfolder,"base_input1.rds"))
+write.csv(pred1,file.path(workingfolder,"countrypredictions1.csv"))
+```
+
+```{r,eval=FALSE}
+library(plotly)
+runMap(file.path(workingfolder,"countrypredictions1.csv"),path.file=T,"countries")
+```
+
+```{r,eval=FALSE}
+writeFormulaforSTM(BASE_INPUT,workingfolder)
+```
+
+```{r,eval=FALSE}
+runSTM(workingfolder)
+```
+
+
+## Q2 Where is there alignment between causal pathways identified withins the three research foci?
+
+
+## Q3 What are unique causal pathways identified within each of the three research foci?
+
+
+## Q4 What causal pathways exist outside of the domains of gender, adoption and measurement that could be potentially integrated into the EPAR research strategy?
+
+
+#Method
+
+###Q1: Topic Modeling and Human Tagging
+
+###Q2: Network Correlation
+
+###Q3: Network Correlation
+
+###Q4: Topic Modelling and Semantic Network Mapping
+
+-->

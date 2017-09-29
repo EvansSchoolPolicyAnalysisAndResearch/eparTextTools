@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Graham Andrews" />
+
+<meta name="date" content="2017-09-28" />
+
+<title>Graphical Outputs</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Graphical Outputs</h1>
+<h4 class="author"><em>Graham Andrews</em></h4>
+<h4 class="date"><em>2017-09-28</em></h4>
+
+
+
+<p>This vignette covers several standard graphics outputs we’ve used with the eparTextTools module. You can see examples of each one in the “Graphical Outputs of the Text Tools” powerpoint in the documentation folder. These are not the only options for graphical output! They have just been made a little easier. You have the entire ggplot2 package at your fingertips, and the sky is really the limit. However, these are the easy ones.</p>
+<div id="outputting-graphics-for-display-and-analysis" class="section level1">
+<h1>Outputting graphics for display and analysis</h1>
+<div id="an-overview-of-output-options" class="section level2">
+<h2>An overview of output options</h2>
+<p>To begin exploring documents, we highlight two commands which provide useful interfaces for seaching documents and clustering documents. When exploring a textual corpora, one often has some sort of an idea of what kinds of information they are interested in. For example, for the above questions we might be interested in what documents discuss terms such as women, gender, access. What if there are other terms closely related or synonyms of those?</p>
+</div>
+<div id="wfplots" class="section level2">
+<h2>wfplots()</h2>
+<p>The first thing you should do with any new set of documents is check the most common terms, using wfplots(). The function needs 4 inputs but the second one is the one that really matters - how many top terms to look for. For example: wfplots( termDocumentMatrix, 7, shortenDoc = TRUE, typePlot = 2 ). As is common with most of the output functions, the term document matrix is the first thing needed. I suggest leaving the other inputs as they are and just changing the second one, from 5 to 7 or 10 to see which other words you might be interested in.</p>
+<p>The objects created by wfplots() can be edited by adding on additional functions, by filtering the term document matrix, or by changing the typePlot.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">wfplots</span>(tdm[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">10</span>,<span class="dv">12</span>)],<span class="dt">typePlot=</span><span class="dv">2</span>, <span class="dv">5</span>,<span class="dt">shortendoc=</span><span class="ot">TRUE</span>)</code></pre></div>
+</div>
+<div id="assocprettyonestep" class="section level2">
+<h2>assocPrettyOneStep()</h2>
+<p>The second important function is assocPrettyOneStep(). This function tells you which other words commonly occur with the word you provide. It’s a good idea to run this at least once for each of your terms to make sure you aren’t missing any. Here, we generate a table where we show words which occur most commonly with the word gender within the corpus.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">assocPrettyOneStep</span>(<span class="st">&quot;gender&quot;</span>,tdm, corpus2,.<span class="dv">5</span>)</code></pre></div>
+</div>
+<div id="wordcount_table" class="section level2">
+<h2>wordcount_table()</h2>
+<p>The function wordcount_table() is a useful one – it allows us to search for word frequencies in documents, pulling counts of how many times a word occurs in various documents, and weighting that count by the length of the document if we so desire.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Searches corpus 1 for the words gender and access based and returns counts based on the term document matrix we built above.</span>
+<span class="kw">wordcount_table</span>(<span class="kw">c</span>(<span class="st">&quot;gender&quot;</span>,<span class="st">&quot;access&quot;</span>),tdm,corpus1)</code></pre></div>
+<p>wordcount_table() generates an html table which can be saved using the saveWidget() command or which can be used just to interact with the data. By default, the function TermDocumentMatrix weights according to weightTF which just counts term frequencies. We might instead want to weight by the term frequency relative to the document frequency, as below. In this command, rather then generating an interactive table, setting raw=true generates a data.table which can then be manipulated within R.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tout&lt;-<span class="kw">wordcount_table</span>(<span class="kw">c</span>(<span class="st">&quot;gender&quot;</span>,<span class="st">&quot;access&quot;</span>),tm::<span class="kw">TermDocumentMatrix</span>(corpus2,<span class="dt">control=</span><span class="kw">list</span>(<span class="dt">weighting=</span>function(X) tm::<span class="kw">weightTfIdf</span>(X, <span class="dt">normalize=</span><span class="ot">FALSE</span>))),corpus1,<span class="dt">raw=</span>T)
+<span class="kw">head</span>(tout[,<span class="dv">1</span>:<span class="dv">3</span>])</code></pre></div>
+</div>
+<div id="narrowing-the-output-by-modifying-the-term-document-matrix" class="section level2">
+<h2>Narrowing the output by modifying the term document matrix</h2>
+<p>The tdm object can be edited to narrow the graphical information presented, for example if we are only interested words within documents which contain the word women, we can use piping to structure the tdm for the graph. The following code creates a heatmap for documents where gender and women both occur at least once, but then clusters those documents based on the 20 most common words across the entire corpus.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tdm[,<span class="kw">as.vector</span>(tdm[<span class="st">&quot;gender&quot;</span>,])&gt;<span class="dv">1</span>] %&gt;%<span class="st"> </span>.[,<span class="kw">as.vector</span>(.[<span class="st">&quot;women&quot;</span>,])&gt;<span class="dv">1</span>] %&gt;%<span class="st"> </span><span class="kw">word_heatmap</span>(.,<span class="dv">20</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tdm[,<span class="kw">as.vector</span>(tdm[<span class="st">&quot;gender&quot;</span>,])&gt;<span class="dv">20</span>] %&gt;%<span class="st"> </span>.[,<span class="kw">as.vector</span>(.[<span class="st">&quot;women&quot;</span>,])&gt;<span class="dv">10</span>] %&gt;%<span class="st"> </span><span class="kw">wfplots</span>(.,<span class="dt">typePlot=</span><span class="dv">2</span>,<span class="dv">10</span>,<span class="dt">shortendoc=</span><span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tdm[,<span class="kw">as.vector</span>(tdm[<span class="st">&quot;gender&quot;</span>,])&gt;<span class="dv">20</span>] %&gt;%<span class="st"> </span>.[,<span class="kw">as.vector</span>(.[<span class="st">&quot;women&quot;</span>,])&gt;<span class="dv">10</span>] %&gt;%<span class="st"> </span><span class="kw">wfplots</span>(.,<span class="dt">typePlot=</span><span class="dv">1</span>,<span class="dv">10</span>,<span class="dt">shortendoc=</span><span class="ot">TRUE</span>)+<span class="kw">ggtitle</span>(<span class="st">&quot;Change X versus Y&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">interest_plot_bydoc</span>(<span class="kw">c</span>(<span class="st">&quot;women&quot;</span>,<span class="st">&quot;farmer&quot;</span>,<span class="st">&quot;school&quot;</span>),tdm[,<span class="dv">1</span>:<span class="dv">5</span>])+<span class="kw">coord_flip</span>() </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">interest_plot_bydoc</span>(<span class="kw">c</span>(<span class="st">&quot;women&quot;</span>,<span class="st">&quot;farmer&quot;</span>,<span class="st">&quot;school&quot;</span>),tdm[,<span class="dv">1</span>:<span class="dv">5</span>]) %&gt;%<span class="st"> </span>plotly::<span class="kw">ggplotly</span>() </code></pre></div>
+<p>By editing the term document matrix to include weighting, each of these commands can be used while taking the length of documents into account.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">TermDocumentMatrix</span>(corpus2[<span class="dv">1</span>:<span class="dv">10</span>],<span class="dt">control=</span><span class="kw">list</span>(<span class="dt">weighting=</span>function(x) <span class="kw">weightSMART</span>(x))) %&gt;%<span class="st"> </span><span class="kw">interest_plot_bydoc</span>(<span class="kw">c</span>(<span class="st">&quot;women&quot;</span>,<span class="st">&quot;farmer&quot;</span>,<span class="st">&quot;school&quot;</span>),.) %&gt;%<span class="st"> </span>plotly::<span class="kw">ggplotly</span>() </code></pre></div>
+<p>While tokenization into words is great, we often want to know how various words go together and how words form sentences that produce meaning and finally (eventually) causal processses.</p>
+<p>Within text analysis, document clustering refers to the grouping of documents into a set of categories based on their semantic concepts. From a program evaluation or portfolio review perspective clustering documents is useful because it can allow us to move beyond user-generated queries to allowing a set of textual data provide evidence about underlying theories of change or policy processes.</p>
+<p>For initial clustering of text, we can utilize the d3heatmap package to construct a heatmap of which words are the most common (y axis) across a set of documents (x axis) where the user can select the number of words they are interested in (6 in demo).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">word_heatmap</span>(tdm,<span class="dv">6</span>)
+
+<span class="kw">word_heatmap</span>(tdm,<span class="dt">pickwords=</span><span class="kw">c</span>(<span class="st">&quot;women&quot;</span>,<span class="st">&quot;gender&quot;</span>,<span class="st">&quot;access&quot;</span>,<span class="st">&quot;land&quot;</span>,<span class="st">&quot;right&quot;</span>,<span class="st">&quot;work&quot;</span>,<span class="st">&quot;labor&quot;</span>,<span class="st">&quot;yield&quot;</span>,<span class="st">&quot;security&quot;</span>))</code></pre></div>
+<p>Based on the table, we can observe that the word “equal” is strongly associated with the word gender. We might use this information to cluster our term document matrix and compare documents where “gender” and “equal” occur frequently to other documents.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tornadoCompare</span>(tdm,<span class="kw">c</span>(<span class="st">&quot;gender&quot;</span>,<span class="st">&quot;equal&quot;</span>,<span class="st">&quot;femal&quot;</span>),<span class="dv">3</span>,<span class="dv">10</span>)</code></pre></div>
+<p>Based on this, we might notice that seasons and school are relatively more frequent for research projects targetting gender as are system related studies and studies of households. <!--
+#Document Clustering
+
+In the above analysis, there was a brief intro into document clustering for the creation of the heatmap of words. However, clustering of documents and words is the basis of much of the automated portfolio review toolset and so we will go into it in more detail throughout the rest of the vignette.
+
+##Structuring documents for topic modeling
+
+While up to this point we have taken documents as given, most text analytic methods were developed for smaller chunks of text. Accordingy, it can be useful to break texts into paragraphs or sentences and then to consider the origin document as a covariate operating on that text chunk. We can thus think of the origin document as a categorical factor that has some unknown relationship to the sentence or text chunk. In the code below, we break a corpus of text--named corpus 1, into paragraph chunks preserving the metadata from each previous chunk. In this code we use the pretopicframe2 function which relies on the Parsey McParseface parser.
+
+
+```r
+BASE_INPUT<-PreTopicFrame2(corpus1,workingfolder=workingfolder)
+```
+
+
+BASE_INPUT$out$meta$OpID<-BASE_INPUT$out$meta$Orig
+#saves files so you can reload
+saveRDS(BASE_INPUT,file.path(workingfolder,"base_input1.rds"))
+```
+
+###Adding geographic information
+
+```r
+buildcliff()
+startcliff()
+library(RCurl)
+library(httr)
+BASE_INPUT$SentFrame$OpID<-BASE_INPUT$SentFrame$Orig
+pred1<-PredictCountryByDoc(BASE_INPUT)
+stopcliff()
+BASE_INPUT$out$meta<-reflectCountryCol(BASE_INPUT$out$meta,pred1,10,FALSE)
+getwd()
+saveRDS(BASE_INPUT,file.path(workingfolder,"base_input1.rds"))
+write.csv(pred1,file.path(workingfolder,"countrypredictions1.csv"))
+```
+
+
+```r
+library(plotly)
+runMap(file.path(workingfolder,"countrypredictions1.csv"),path.file=T,"countries")
+```
+
+
+```r
+writeFormulaforSTM(BASE_INPUT,workingfolder)
+```
+
+
+```r
+runSTM(workingfolder)
+```
+
+
+## Q2 Where is there alignment between causal pathways identified withins the three research foci?
+
+
+## Q3 What are unique causal pathways identified within each of the three research foci?
+
+
+## Q4 What causal pathways exist outside of the domains of gender, adoption and measurement that could be potentially integrated into the EPAR research strategy?
+
+
+#Method
+
+###Q1: Topic Modeling and Human Tagging
+
+###Q2: Network Correlation
+
+###Q3: Network Correlation
+
+###Q4: Topic Modelling and Semantic Network Mapping
+
+--></p>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
