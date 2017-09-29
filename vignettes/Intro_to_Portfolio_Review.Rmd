@@ -107,13 +107,13 @@ Now that your files are ready, you can create a corpus allDocs() command. Pass t
 ```{r, echo=TRUE, results='hide', eval=FALSE}
 #optional, load a set of files for testing
 example_documents()
-#if using your own files in another location, replace "demo.docs.folder" with the path to your files.
-corpus1<-allDocs(directory="demo.docs.folder",SkiponError=FALSE)
+#if using your own files in another location, replace "docs_folder" with the path to your files. DON'T FORGET TO REVERSE THE SLASHES if you're on Windows!
+corpus1<-allDocs(directory="docs_folder",SkiponError=FALSE)
 ```
 
 ```{r, eval=FALSE}
-#Make directory for saving and save a copy of the corpus
-epartexttools::makeworking("Research.Grants")
+#Make directory for saving and save a copy of the corpus. This folder can be named anything you like, but I picked "eparTextTools_output" here. Change it if you like! 
+epartexttools::makeworking("eparTextTools_output")
 ```
 
 Save your new corpus in the working folder we just made so that it isn't lost.
@@ -130,7 +130,7 @@ corpus1<-readRDS(file.path(workingfolder,"corpus.rds"))
 
 Currently, the allDocs() command supports parsing of txt, pdf, docx, doc, or txt files. Behind the scenes, is a "wrapper function" which reads a directory files using the getTextR() function, which itself utilizes modified versions of the read_doc(), readPDF(), or readPlain() functions from the tm package, and the read_docx() function from qdapTools.
 
-Once documents are read into a corpus, the metadata from the documents can be extracted by loooping through elements included within the document, for example;
+Once documents are read into a corpus, the metadata from the documents can be extracted by looping through elements included within the document, for example;
 
 ```{r, echo=TRUE, eval=FALSE}
 lapply(corpus1,function(X){X$meta})[[1]]
@@ -175,8 +175,11 @@ corpus2<-readRDS(file.path(workingfolder,"corpus_cleaned.rds"))
 A second function, TermDocumentMatrix(), creates a word frequency matrix, and we're going to also remove sparse terms with removeSparseTermss() allowing graphical and exploratory analysis of text. A Term Document Matrix structures a corpus into a matrix where for every word there is a count of how often that word occurs within a given document. Again, remember, our unit of analysis is going to be a whole set of documents, so  we can use a term document matrix to study how term usage varies across that set. A Term Document Matrix, however, stores, documents in columns and words in each row. Notice, the unit of anlysis could thus be either words (with counts in each report) or reports (which counts of words in each). We will put the term document matrix in a named variable called "tdm" so we can use it again.
 
 ```{r, eval=FALSE}
+#First, load the "magrittr" package so that the %>% in the next command is understood
+library(magrittr)
+library(tm)
 #converts corpus into term document matrix, removing terms that occur infrequently (can be adjusted by manipulating that .6)
-tdm<-TermDocumentMatrix(corpus2) %>% removeSparseTerms(.,.8)
+tdm<-tm::TermDocumentMatrix(corpus2) %>% removeSparseTerms(.,.8)
 ```
 
 Now that we have a term document matrix, we can create analyses of the text.  That will be covered in the next document on output options.
