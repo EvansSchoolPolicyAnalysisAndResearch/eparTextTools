@@ -12,4 +12,3 @@ This function loads the parsers for openNLP
 \examples{
 loadparsers()
 }
-

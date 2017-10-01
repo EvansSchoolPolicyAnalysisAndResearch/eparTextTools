@@ -12,4 +12,3 @@ formcluster(file_list)
 \description{
 a method for viewing the content of a word
 }
-

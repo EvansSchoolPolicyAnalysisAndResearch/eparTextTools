@@ -20,4 +20,3 @@ taking a topic model, this function returns the top topics for that word.
 \examples{
 idtopics(st1,"research",10)
 }
-

@@ -265,7 +265,6 @@ doc_clean_process<-function(corpusname){
 #'
 #' @param assoctable rough word association table
 #' @param corpus word corpus for table
-#' @param ngram
 #' @return a cleaned tm corpus
 #' @seealso \code{\link{tm_map}} 
 #' @export
@@ -518,10 +517,10 @@ if(raw==TRUE){data.table::data.table(sents)} else {
 #==============================
 #The OCR_DOCS() function.  Original version By D. Graham Andrews and Ryan Scott, first finished 5/16/2017
 #==============================
-#' @Title \code{OCR_DOCS} will read a given folder for all PDFs in it
-#' @description This function uses Google's "parsey mcparseface" neural network to read PDFs and output machine readable text files of the content.  It moves the source files up one directory into a director called OCR_Sources, and replaces them in the working directory with text versions.
+#' @name OCR_DOCS
+#' @description \code{OCR_DOCS} uses Google's "parsey mcparseface" neural network to read PDFs and output machine readable text files of the content.  It moves the source files up one directory into a director called OCR_Sources, and replaces them in the working directory with text versions.
 #' @param path: A path to a directory containing mixed pdf/other documents.  Runs OCR on all the PDF documents. (Does not detect which PDFs have existing text.)
-#' @returns output path: creates text files in the local working directory with the same names as the PDFs to be OCR'd.
+#' @return output path: creates text files in the local working directory with the same names as the PDFs to be OCR'd.
 #' @examples
 #' text_files_location <- OCR_DOCS(path_to_pdf_files)
 #' @export
@@ -598,10 +597,8 @@ OCR_DOCS<-function(path){
 #outputs: No return value. Writes file to disk at c:/antiword/8859-1.txt if it doesn't exist.
 #The purpose of this function is to cover for incomplete fresh installations of antiword, which don't populate environment variables with suitable mapping files to read the .doc files and end up failing.
 #When the environment variables for antiword are missing, it defaults to checking in c:/antiword/ so by populating our file there it will succeed.
-#' @Title \code{readDocInitWindows} will add the required parsing files to call readDoc() successfully on a machine that has just installed antiword but not placed the needed parser files in the needed directories.
-#' @description Only needed for windows installations: Places a copy of the file 8859-1-2.txt into the c:/antiword folder.  Antiword is hard coded to look for this file when parsing .doc files, but does not place the file there itself. Antiword fails silently when this file is not present. This function is for our package to detect this case and place the file before calling antiword so that it won't fail.
-#' @param none
-#' @returns none
+#' @name readDocInitWindows
+#' @description \code{readDocInitWindows} will add the required parsing files to call readDoc() successfully on a machine that has just installed antiword but not placed the needed parser files in the needed directories. Only needed for windows installations: Places a copy of the file 8859-1-2.txt into the c:/antiword folder.  Antiword is hard coded to look for this file when parsing .doc files, but does not place the file there itself. Antiword fails silently when this file is not present. This function is for our package to detect this case and place the file before calling antiword so that it won't fail.
 #' @examples
 #' if(os_is_windows & parser_file_missing){readDocInitWindows()}
 #' @export

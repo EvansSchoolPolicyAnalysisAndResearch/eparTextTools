@@ -23,4 +23,3 @@ copyDir("../doc","../newdocs")
 \seealso{
 \code{\link{file.copy}}
 }
-

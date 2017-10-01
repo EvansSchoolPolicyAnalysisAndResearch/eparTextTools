@@ -15,4 +15,3 @@ NA installs a docker server
 \description{
 This function calls out using the system command. make sure to clear your workspace and history if you use this. However, what a cool function, right?
 }
-

@@ -19,4 +19,3 @@ a shiny app in the app.name folder within the working folder
 \description{
 Write a shiny app that draws network connections between words.
 }
-

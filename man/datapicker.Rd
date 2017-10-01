@@ -13,7 +13,9 @@ datapicker(file_list, multiple = TRUE, graphics = FALSE)
 
 \item{graphics}{graphical or boring interface.}
 }
+\value{
+A data frame of the contents of the word document files
+}
 \description{
 a method for viewing the content of a word
 }
-

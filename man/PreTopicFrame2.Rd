@@ -2,21 +2,23 @@
 % Please edit documentation in R/TopicFunctions.R
 \name{PreTopicFrame2}
 \alias{PreTopicFrame2}
-\title{Process a corpus into a topic model ready object, but do so while using the Syntaxnet Parser rather than the openNLP parser.}
+\title{Process a corpus into a topic model ready object, but do so while using the syntaxnet or spacy Parser rather than the openNLP parser.}
 \usage{
-PreTopicFrame2(CORPUS_A, sample_num, syntaxnet = T, workingfolder,
-  removeentities = T)
+PreTopicFrame2(CORPUS_A, sample_num = 0, workingfolder, removeentities = T,
+  dbexists = FALSE, spcy = T, syntaxnet = F)
 }
 \arguments{
 \item{CORPUS_A}{Document corpus}
 
 \item{sample_num}{If sampling from documents, how many chunks to sample from each document? If 0, all chunks are kept.}
 
-\item{syntaxnet}{Defaults to true but if it is false, this skips annotating for NLP and goes directly to text processing. This might be useful if you dont care about limiting verb-phrases in later steps and want to fit a topic model to all documents.}
-
 \item{workingfolder}{folder where files are to be saved.}
 
 \item{removeentities}{TRUE removes all proper nouns. FALSE keeps all proper nouns. "ONLY" will keep only proper nouns. This means you could fit a topic model to only proper nouns contained in documents}
+
+\item{spcy}{Defaults to true. Uses spacy to create a database.}
+
+\item{syntaxnet}{Defaults to true but if it is false, this skips annotating for NLP and goes directly to text processing. This might be useful if you dont care about limiting verb-phrases in later steps and want to fit a topic model to all documents.}
 }
 \value{
 SentFrame data frame with one row for each paragraph chunk
@@ -36,4 +38,3 @@ BASE_INPUT<-PreTopicFrame2(CORPUS_A,0,syntaxnet=F,workingfolder)
 \seealso{
 \code{\link{stm}}
 }
-

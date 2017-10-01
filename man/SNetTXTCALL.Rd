@@ -9,4 +9,3 @@ SNetTXTCALL(doc, dontprintoutput = T)
 \description{
 This function calls syntaxnet.
 }
-

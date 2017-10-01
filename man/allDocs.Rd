@@ -11,7 +11,7 @@ allDocs(directory, SkiponError = FALSE, gen_pdf_tools = TRUE)
 
 \item{gen_pdf_tools}{if using a pc set to true. if on a unix server, setting to false will preserve pdf metadata.}
 
-\item{onError}{if skip skip documents that read wrong.}
+\item{onError}{if skip, skip documents that read wrong.}
 }
 \value{
 Corpus of text documents.
@@ -25,4 +25,3 @@ allDocs("folder")
 \seealso{
 \code{\link{corpus}}
 }
-

@@ -12,4 +12,3 @@ makeworking(dir)
 \description{
 This function does the quite useful task of making a workingfolder object in the environment.
 }
-

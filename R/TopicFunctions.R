@@ -3,7 +3,6 @@
 #' Clean the java environment.
 #'
 #' Function cleans the java environment. This is a great command. Run it whenever you feel like it.
-#' @param NA
 #' @seealso \code{\link{rJava}} 
 #' @examples
 #' jgc()

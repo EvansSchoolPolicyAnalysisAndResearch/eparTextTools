@@ -32,4 +32,3 @@ wfplots(TermDocumentMatrix(corpus1),typePlot=1,5,minfreq=5,shortendoc=T)
 \seealso{
 \code{\link{ggplot}}
 }
-

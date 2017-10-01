@@ -17,4 +17,3 @@ data frame ready for mapping in plotly
 \description{
 Using the countrypredictions object, retuns a map for an opportunity number.
 }
-

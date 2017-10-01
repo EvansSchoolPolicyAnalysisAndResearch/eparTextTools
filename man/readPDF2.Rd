@@ -22,4 +22,3 @@ readPDF2(engine="xpdf")(elem=list(uri=fname), language="en")
 \seealso{
 \code{\link{readPDF}}
 }
-

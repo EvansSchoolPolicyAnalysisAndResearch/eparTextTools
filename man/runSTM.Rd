@@ -4,10 +4,12 @@
 \alias{runSTM}
 \title{Run STM in a seperate R session.}
 \usage{
-runSTM(workingfolder)
+runSTM(workingfolder, filename)
 }
 \arguments{
 \item{workingfolder}{the workingfolder where you are saving objects.}
+
+\item{filename}{name of the preprocessed rds file from pretopicprocess.}
 }
 \value{
 writes file and starts new r process in background
@@ -21,4 +23,3 @@ runSTM("../Research.Grants")
 \seealso{
 \code{\link{stm}}
 }
-

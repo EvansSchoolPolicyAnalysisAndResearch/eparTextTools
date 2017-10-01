@@ -21,4 +21,3 @@ doc_clean_process(corpus1)
 \seealso{
 \code{\link{tm_map}}
 }
-

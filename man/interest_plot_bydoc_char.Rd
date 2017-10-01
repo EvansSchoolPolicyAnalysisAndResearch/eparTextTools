@@ -25,4 +25,3 @@ interest_plot_bydoc("research",TermDocumentMatrix(corpus1),rep("bacon",length(co
 \seealso{
 \code{\link{ggplot2}}
 }
-

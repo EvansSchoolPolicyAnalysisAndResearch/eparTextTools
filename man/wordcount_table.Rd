@@ -31,4 +31,3 @@ This function is useful for looking at occurences of words within documents
 \examples{
 wordcount_table(c("gender","nutrition"),TermDocumentMatrix(clcorp),corpus1)
 }
-

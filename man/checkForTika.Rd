@@ -21,4 +21,3 @@ checkForTika()
 \seealso{
 \code{\link{http://apache.claz.org/tika}}
 }
-

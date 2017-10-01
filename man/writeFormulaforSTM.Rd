@@ -23,4 +23,3 @@ writeFormulaforSTM(BASE_INPUT,"../Research.Grants")
 \seealso{
 \code{\link{stm}}
 }
-

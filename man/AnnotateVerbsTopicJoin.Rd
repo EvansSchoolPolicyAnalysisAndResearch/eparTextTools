@@ -30,4 +30,3 @@ AnnotatesLarge<-AnnotateVerbsTopicJoin(allwords,BASE_INPUT$processed,BASE_INPUT$
 \seealso{
 \code{\link{stm}}
 }
-

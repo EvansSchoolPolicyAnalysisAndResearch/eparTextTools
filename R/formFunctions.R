@@ -94,7 +94,7 @@ docx_table_view<-function(file,export_frame=FALSE,showView=T){
 #' @param file_list list of word document files
 #' @param multiple allow selecting multiple words
 #' @param graphics graphical or boring interface.
-#' @return 
+#' @return A data frame of the contents of the word document files
 #' @export
 #' @description a method for viewing the content of a word
 datapicker<-function(file_list,multiple=TRUE,graphics=FALSE){

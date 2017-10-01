@@ -27,4 +27,3 @@ interest_plot("research",TermDocumentMatrix(corpus1),by.var=variable,"DocID")
 \seealso{
 \code{\link{ggplot2}}
 }
-

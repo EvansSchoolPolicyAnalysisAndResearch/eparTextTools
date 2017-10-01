@@ -9,4 +9,3 @@ SQLtabSyntaxNET(TEXTIN, sample_num)
 \description{
 This function calls syntaxnet.
 }
-

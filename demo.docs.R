@@ -1,3 +1,11 @@
+#' This is data to be included in my package
+#'
+#' @name demo.docs
+#' @docType data
+#' @author Ryan Scott \email{ryscott@uw.edu}
+#' @keywords data
+NULL
+
 demo.docs<-read.csv("demodoc_links.csv",stringsAsFactors=FALSE)
 demo.docs<-demo.docs$links
 if(file.exists("demo.docs.folder")==FALSE){dir.create("demo.docs.folder")}

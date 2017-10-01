@@ -12,4 +12,3 @@ how_do_i(theproblem)
 \description{
 A joke command to look up a method in R.
 }
-

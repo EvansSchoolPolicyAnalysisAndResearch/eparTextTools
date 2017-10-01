@@ -15,4 +15,3 @@ NA fills folder with alchemy api calls
 \description{
 This function runs the .R file returned by writerun_alch. It takes as an argument a number which corresponds to a row in the BASE_INPUT dataframe
 }
-

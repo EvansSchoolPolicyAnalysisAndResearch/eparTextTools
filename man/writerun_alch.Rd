@@ -17,4 +17,3 @@ a .R file saved in the working folder
 \description{
 This function creates a .R file to call to alchemy api.
 }
-

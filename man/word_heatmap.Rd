@@ -36,4 +36,3 @@ word_heatmap(TermDocumentMatrix(corpus1),10)
 \seealso{
 \code{\link{d3heatmap}}
 }
-

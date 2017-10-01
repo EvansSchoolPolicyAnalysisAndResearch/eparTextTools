@@ -28,4 +28,3 @@ corpus1<-getTextR(file.path())
 \seealso{
 \code{\link{tm::corpus}}
 }
-

@@ -15,4 +15,3 @@ This function creates a folder if documents in the working directory.
 \examples{
 example_documents()
 }
-

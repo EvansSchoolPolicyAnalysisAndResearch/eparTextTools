@@ -12,4 +12,3 @@ how_do_i_open(ending)
 \description{
 Look up how to open a file.
 }
-

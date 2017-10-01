@@ -2,6 +2,7 @@
 #FindHiddenHTML
 #==================
 #We had a large set of HTML files that were all txt files.  This converts them to proper txt files. This parses the files and removes all HTML properly. Doing so by regex is much faster but prone to missing html bits and creating bugs.
+#' @name findHiddenHTML
 #' @param path A directory containing .txt files with some HTML in them we want removed
 #' @param moveOldFiles moves the source files to a newsource "HTML_Sources" directory *alongside* the folder designated by the path. This folder holds all the text files.  If this moveOldFiles is set to FALSE it will not move the files and they will be left where they are.
 #' @return A folder location containing the finished files
@@ -9,7 +10,6 @@
 #' @export
 #' @examples
 #' outputFileLocation <- findHiddenHTML("C:/Users/Graham/Documents/EPAR/HTML_TXT_TestFiles")
-
 findHiddenHTML<-function(path, moveOldFiles=TRUE){
 
 #library 
@@ -86,11 +86,11 @@ return(outputPath)
 #===================================
 #Function getCitations - First version 6/8/2017 by D. Graham Andrews
 #===================================
-#'
+#' @name getCitations
 #' @return a dataframe with details on the documents which cite all results of the search, col1 = PubMedID, col2=Title, col3=date published, col4=PubMedID of doc cited
 #' @export
 #' @param searchterms searchResultsDataFrame: a dataframe as output by searchWordsPubMed()
-#' @retmax how many arguments to return
+#' @param retmax how many arguments to return
 #' @description Takes output directly from epartexttools:searchWordsPubMed() and returns a matrix of the pubmed IDs titles, and dates of all citations
 #' @examples
 #'output_text <- getCitations(searchWordsPubMed("influenza"),retmax=10))
@@ -144,9 +144,9 @@ searchPMIDs<-function(pmids){
 #' @return a dataframe of info on requested publications
 #' @export
 #' @param searchterms a query to search
-#' @email users email address
-#' @retmax how many arguments to return
-#' @... all other arguments passed to EUtilsQuery
+#' @param email users email address
+#' @param retmax how many arguments to return
+#' @param ... all other arguments passed to EUtilsQuery
 #' @description  This function parses a search and returns a dataframe based on a pubmed id. More variables could be added by adding additional names and commands from the RISmed package
 #' @examples
 #'test1<-searchWordsPubMED("'gender equity'+environment","ryscott5@uw.edu",retmax=10)

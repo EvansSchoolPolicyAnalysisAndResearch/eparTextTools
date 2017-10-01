@@ -5,7 +5,8 @@
 #' @param app.name name of the application (will be a folder name)
 #' @param run.app should the shiny app be run?
 #' @return a shiny app in the app.name folder within the working folder
-#' @example writeShinyFlow(workingfolder,"testapp")
+#' @example
+#' writeShinyFlow(workingfolder,"testapp")
 writeShinyFlow<-function(workingfolder,app.name,run.app=TRUE){
 dir.create(file.path(workingfolder,app.name))
 writeLines(text=c('library(data.table)

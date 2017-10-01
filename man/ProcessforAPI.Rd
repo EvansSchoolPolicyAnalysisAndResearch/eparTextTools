@@ -15,4 +15,3 @@ a data frame
 \description{
 This function cleans the sentences for sending to alchemy API
 }
-

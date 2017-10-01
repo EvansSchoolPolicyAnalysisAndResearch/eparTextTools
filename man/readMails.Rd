@@ -23,4 +23,3 @@ readMails("../doc","../procdocs")
 \seealso{
 \code{\link{http://www.matijs.net/software/msgconv/}}
 }
-

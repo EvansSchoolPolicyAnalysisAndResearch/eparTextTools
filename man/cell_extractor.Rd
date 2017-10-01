@@ -22,4 +22,3 @@ Read the primary table from a Gates proposal word document, keeping column names
 \examples{
 gates3<-bind_rows(lapply(tfiles,outcome_extractor))
 }
-

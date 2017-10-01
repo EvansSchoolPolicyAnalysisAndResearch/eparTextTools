@@ -9,4 +9,3 @@ buildcliff()
 \description{
 These commands collectively build, ensure a server is working, and stop a running docker server for gecoding. Once you have run buildcliff and startcliff, you can run the PredictCountryByDoc command to predict which countries documents correspond to. For these commands, we need to have the opportunity id labels as OpID in the SentFrame part of BASE_INPUT
 }
-

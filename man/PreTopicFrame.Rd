@@ -29,4 +29,3 @@ BASE_INPUT<-PreTopicFrame(corpus1,1)
 \seealso{
 \code{\link{stm}}
 }
-

@@ -23,4 +23,3 @@ read_docxtm("demodoc.docx",skip=0)
 \seealso{
 \code{\link{PlainTextDocument}}
 }
-

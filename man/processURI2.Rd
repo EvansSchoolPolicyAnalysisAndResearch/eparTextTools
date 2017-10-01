@@ -18,4 +18,3 @@ Worker function for processing URI info. From tm package.
 \seealso{
 \code{\link{tm}}
 }
-

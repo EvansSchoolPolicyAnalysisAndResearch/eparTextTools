@@ -17,4 +17,3 @@ data frame of processed sentences
 \description{
 This function parses the entries in the alchemy api folder and creates a dataframe
 }
-

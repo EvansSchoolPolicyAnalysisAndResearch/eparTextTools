@@ -27,4 +27,3 @@ assocPrettyOneStep(c("research","find"),termDocumentMatrix(corpus),corpus1,.8)
 \seealso{
 \code{\link{findAssoc}}
 }
-

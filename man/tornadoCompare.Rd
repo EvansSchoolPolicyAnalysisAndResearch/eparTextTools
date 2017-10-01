@@ -27,4 +27,3 @@ interest_plot_bydoc("research",TermDocumentMatrix(corpus1))
 \seealso{
 \code{\link{ggplot2}}
 }
-

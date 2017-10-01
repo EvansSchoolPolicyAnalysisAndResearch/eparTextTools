@@ -18,4 +18,3 @@ Read the primary table from a Gates proposal word document, keeping column names
 \examples{
 gates<-bind_rows(lapply(tfiles,readfiletab_gates))
 }
-

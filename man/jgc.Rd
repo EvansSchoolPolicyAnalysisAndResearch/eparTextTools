@@ -15,4 +15,3 @@ jgc()
 \seealso{
 \code{\link{rJava}}
 }
-

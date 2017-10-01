@@ -20,4 +20,3 @@ Pulls similar words, expanding topic selection ability. Interactive.
 \examples{
 idtopics(st1,"research",10)
 }
-

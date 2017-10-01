@@ -18,4 +18,3 @@ Extracts the outcome table from a Gates proposal document.
 \examples{
 outcome_extractor()
 }
-

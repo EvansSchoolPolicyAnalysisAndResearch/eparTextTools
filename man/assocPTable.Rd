@@ -23,4 +23,3 @@ assocPTable(findAssoc(corpus1,wordlist,corrVal),corpus)
 \seealso{
 \code{\link{tm_map}}
 }
-

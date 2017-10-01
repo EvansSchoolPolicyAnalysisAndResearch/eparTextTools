@@ -17,4 +17,3 @@ view of file
 \description{
 a method for viewing the content of a word document via parsing the xml file to a data frame.
 }
-

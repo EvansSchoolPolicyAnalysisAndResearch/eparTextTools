@@ -12,7 +12,7 @@
 #' @seealso the entire dplyr package 
 #' @export
 #' @description This command creates a sqlite database which parse information is saved in, while also creating the proper frames for running a topic model.
-#' @examples
+
 SPCY_PreTopicFrame<-function(CORPUS_A,sample_num=0,workingfolder,removeentities=T,dbexists=FALSE,spcy=T,syntaxnet=F){
   cstrings<-lapply(CORPUS_A,function(X) paste(NLP::content(X),collapse="\n\n"))
   pstrings<-lapply(cstrings,tokenizers::tokenize_sentences,simplify=T)
@@ -115,7 +115,7 @@ loadwordnet<-function(){
 #' @param VERBWORD regular expression for verb you would like to generally keep
 #' @param parsecnnl table resulting from spacy parse 
 #' @examples
-#' IDframes("[cause|change],collect(tbl(scydb,"parses_uw"),n=Inf))
+#' IDframes("[cause|change],collect(tbl(scydb,"parses_uw"),n=Inf)")
 IDframes<-function(VERBWORD,parsecnnl){
   wn<-loadwordnet()
   filter(tbl(wn, "fnwords"), word%in%filter(parsecnnl,pos=="VERB")$tokens) %>% left_join(tbl(wn,"fnlexemes")) %>% left_join(tbl(wn, "fnlexunits")) %>% left_join(tbl(wn, "fnframes")) %>% select(.,word,frame,framedefinition) %>% collect %>% filter(., stringr::str_detect(tolower(frame), VERBWORD))
@@ -126,7 +126,7 @@ IDframes<-function(VERBWORD,parsecnnl){
 #' @export
 #' @param parsecnnl table resulting from spacy parse 
 #' @description This command uses the result of IDframes and keeps only sentences with relevant verb frames
-#' @examples
+
 sentkeeper<-function(idframes,parsecnnl,database=T){
   if(database==T){
     parsecnnl<-mutate(parsecnnl,"word_out"=tolower(token))

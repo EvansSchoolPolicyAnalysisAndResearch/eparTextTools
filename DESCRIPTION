@@ -1,6 +1,6 @@
 Package: epartexttools
 Title: Rapid Portfolio Review Toolkit
-Version: 0.3
+Version: 0.5
 Authors@R: c(person("Ryan", "Scott", email = "ryscott5@uw.edu",role = c("aut", "cre")),
              person("Graham", "Andrews", email = "danielgandrews@gmail.com", role = c("aut")),
              person("Leigh", "Anderson", email = "epar@uw.edu",role = c("aut")),
@@ -61,7 +61,7 @@ Imports:
   rmarkdown,
   tokenizers,
   textreg,
-  pdftools
+  pdftools,
   tm.plugin.webmining
 RoxygenNote: 6.0.1
 Suggests: 
