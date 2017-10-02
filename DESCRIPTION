@@ -12,7 +12,6 @@ LazyData: true
 Imports:
   plyr,
   dplyr,
-  dbplyr,
   spacyr,
   stringr,
   ggplot2,
@@ -62,9 +61,10 @@ Imports:
   tokenizers,
   textreg,
   pdftools,
-  tm.plugin.webmining
 RoxygenNote: 6.0.1
 Suggests: 
   tm.plugin.mail,
   openNLPmodels.en,
+  dbplyr,
+  tm.plugin.webmining
 VignetteBuilder: knitr
